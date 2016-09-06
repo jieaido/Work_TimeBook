@@ -24,7 +24,11 @@ namespace Entity
         //的详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=390109。
 
          public virtual DbSet<UserInfo> UserInfos { get; set; }
-          public virtual DbSet<Team> Teams { get; set; } 
+          public virtual DbSet<Team> Teams { get; set; }
+
+        public System.Data.Entity.DbSet<Entity.Model.Role> Roles { get; set; }
+
+        public System.Data.Entity.DbSet<Entity.Model.Permiss> Permisses { get; set; }
     }
 
     //public class MyEntity

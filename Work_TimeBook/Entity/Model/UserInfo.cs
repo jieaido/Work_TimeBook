@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Entity.Model
 {
@@ -31,10 +32,8 @@ namespace Entity.Model
         /// </summary>
         public string Description { get; set; }
 
-        /// <summary>
-        ///     是否是管理者
-        /// </summary>
-        public bool IsManager { get; set; }
+        public virtual  IEnumerable<Role> Roles { get; set; }
+         
 
         public virtual Team Team { get; set; }
     }

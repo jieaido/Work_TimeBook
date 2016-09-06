@@ -170,6 +170,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PermissesController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
     <Compile Include="Controllers\UserInfoesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -182,6 +184,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Work_TimeBook.mdf" />
+    <Content Include="App_Data\Work_TimeBook_log.ldf">
+      <DependentUpon>Work_TimeBook.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -246,10 +252,18 @@
     <Content Include="Views\UserInfoes\Details.cshtml" />
     <Content Include="Views\UserInfoes\Edit.cshtml" />
     <Content Include="Views\UserInfoes\Index.cshtml" />
+    <Content Include="Views\Roles\Create.cshtml" />
+    <Content Include="Views\Roles\Delete.cshtml" />
+    <Content Include="Views\Roles\Details.cshtml" />
+    <Content Include="Views\Roles\Edit.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Permisses\Create.cshtml" />
+    <Content Include="Views\Permisses\Delete.cshtml" />
+    <Content Include="Views\Permisses\Details.cshtml" />
+    <Content Include="Views\Permisses\Edit.cshtml" />
+    <Content Include="Views\Permisses\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
