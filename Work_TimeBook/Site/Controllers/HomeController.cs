@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Work_TimeBook.Controllers
+namespace Site.Controllers
 {
     public class HomeController : Controller
     {
@@ -12,12 +12,13 @@ namespace Work_TimeBook.Controllers
         {
             return View();
         }
-        [Authorize]
+       [Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            //ViewBag.Message = "Your application description page.";
 
-            return View();
+            //return View();
+           return Content("okokoko!");
         }
 
         public ActionResult Contact()

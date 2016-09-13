@@ -13,7 +13,7 @@ namespace Work_TimeBook.Controllers
 {
     public class UserInfoesController : Controller
     {
-        private Model1 db = new Model1();
+        private EFDbContext db = new EFDbContext();
 
         // GET: UserInfoes
         public ActionResult Index()

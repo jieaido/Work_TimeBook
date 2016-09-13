@@ -13,7 +13,7 @@ namespace Work_TimeBook.Controllers
 {
     public class RolesController : Controller
     {
-        private Model1 db = new Model1();
+        private EFDbContext db = new EFDbContext();
 
         // GET: Roles
         public ActionResult Index()

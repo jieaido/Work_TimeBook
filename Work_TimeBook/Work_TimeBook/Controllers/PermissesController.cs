@@ -13,7 +13,7 @@ namespace Work_TimeBook.Controllers
 {
     public class PermissesController : Controller
     {
-        private Model1 db = new Model1();
+        private EFDbContext db = new EFDbContext();
 
         // GET: Permisses
         public ActionResult Index()
