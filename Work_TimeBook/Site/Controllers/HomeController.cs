@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Entity.Model;
 
 namespace Site.Controllers
 {
@@ -14,11 +16,18 @@ namespace Site.Controllers
         }
        [Authorize]
         public ActionResult About()
-        {
-            //ViewBag.Message = "Your application description page.";
+       {
+           string re = "";
+           if (User.Identity.IsAuthenticated)
+           {
+               FormsIdentity id = (FormsIdentity) User.Identity;
+               var ticket = id.Ticket;
+               re = ticket.UserData;
+           }
+            ViewBag.Message = re;
 
-            //return View();
-           return Content("okokoko!");
+            return View();
+
         }
 
         public ActionResult Contact()
