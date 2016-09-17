@@ -15,7 +15,7 @@ namespace Entity
         //如果您想要针对其他数据库和/或数据库提供程序，请在应用程序配置文件中修改“EFDbContext”
         //连接字符串。
         public EFDbContext()
-            : base("name=EFDbContext")
+            : base("name=work_TimeContext")
         {
 
         }

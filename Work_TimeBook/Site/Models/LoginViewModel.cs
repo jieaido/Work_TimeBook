@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
+using System.Web.Mvc;
 
 namespace Work_TimeBook.Models
 {
@@ -19,5 +21,19 @@ namespace Work_TimeBook.Models
         [Display(Name = "记住我")]
         public bool RememberMe { get; set; }
 
+    }
+
+    public class RegisterViewModel
+    {
+        [Required]
+        [Remote("ValiteUserName","Login",ErrorMessage = "用户名已存在")]
+        [Display(Name ="用户名")]
+        public string UserName { get; set; }
+       [Required]
+       [Display(Name = "密码")]
+        public string Password { get; set; }
+        [Required]
+        [Display(Name = "确认密码")]
+        public string ConfirmPassword { get; set; }
     }
 }

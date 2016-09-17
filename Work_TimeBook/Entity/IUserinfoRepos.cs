@@ -12,16 +12,18 @@ namespace Entity
     {
         IEnumerable<UserInfo> UserInfos { get; }
         int ValiteLoginInfo(string loginname, string loginpwd);
+        void AddorUpdate(UserInfo userInfo);
+        UserInfo DeleteUserinfo(UserInfo userInfo);
+        bool ExistUserName(string userName);
+        int SaveChanges();
     }
 
   public   class UserinfoRepos : IUserinfoRepos
     {
       private EFDbContext _context=new EFDbContext();
-      public IEnumerable<UserInfo> UserInfos
-      {
-          get { return _context.UserInfos; }
-      }
-        /// <summary>
+      public IEnumerable<UserInfo> UserInfos => _context.UserInfos;
+
+      /// <summary>
         /// 验证登录信息
         /// </summary>
         /// <param name="loginname">用户名</param>
@@ -46,6 +48,16 @@ namespace Entity
       public UserInfo DeleteUserinfo(UserInfo userInfo)
       {
          return _context.UserInfos.Remove(userInfo);
+      }
+
+      public bool ExistUserName(string userName)
+      {
+          return UserInfos.Any(m => m.LoginName == userName);
+      }
+
+      public int SaveChanges()
+      {
+          return _context.SaveChanges();
       }
     }
 }

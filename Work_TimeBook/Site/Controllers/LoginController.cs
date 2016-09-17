@@ -7,7 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Entity;
+using Entity.Model;
 using Helper;
+using Microsoft.AspNet.Identity;
 using Work_TimeBook.Models;
 
 
@@ -15,11 +17,11 @@ namespace Work_TimeBook.Controllers
 {
     public class LoginController : Controller
     {
-        private IUserinfoRepos UserinfoRepos;
+        private IUserinfoRepos _userinfoRepos;
 
         public LoginController(IUserinfoRepos userinfoRepos)
         {
-            UserinfoRepos = userinfoRepos;
+            _userinfoRepos = userinfoRepos;
         }
 
         // GET: Login
@@ -34,14 +36,16 @@ namespace Work_TimeBook.Controllers
         {
             if (ModelState.IsValid)
             {
+                int valiteid = _userinfoRepos.ValiteLoginInfo(model.LoginName, model.LoginPwd);
 
-                int valiteid = UserinfoRepos.ValiteLoginInfo(model.LoginName, model.LoginPwd);
                 if (valiteid > 0)
                 {
+                    DateTime exprierTime=model.RememberMe==true?DateTime.Now.AddHours(3):
+                    DateTime.Now.AddDays(3); 
                     FormsAuthenticationTicket tick = new FormsAuthenticationTicket(1,
                     model.LoginName,
                     DateTime.Now,
-                    DateTime.Now.AddHours(3.0)
+                    exprierTime
                      , true,
                      "userdata",
                      FormsAuthentication.FormsCookiePath);
@@ -55,16 +59,56 @@ namespace Work_TimeBook.Controllers
                     ViewBag.ReturnUrl = returnUrl;
                     return View(model);
                 }
-
-
+                
             }
-
-            //FormsAuthentication.SetAuthCookie(name, true);
+            if (string.IsNullOrEmpty(returnUrl ))
+            {
+                return RedirectToAction("index", "Home");
+            }
+            
             return Redirect(returnUrl);
 
         
             
           
+        }
+        [HttpPost]
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("index", "Home");
+        }
+        
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                UserInfo userInfo = new UserInfo()
+                {
+                    LoginName = model.UserName,
+                    LoginPwd = model.Password,
+                    
+                };
+                _userinfoRepos.AddorUpdate(userInfo);
+                _userinfoRepos.SaveChanges();
+                return View("Login");
+            }
+
+            return View();
+        }
+
+        public JsonResult ValiteUserName(string UserName)
+        {
+            if (!_userinfoRepos.ExistUserName(UserName))
+            {
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+            return Json("用户名已存在，请更换用户名",JsonRequestBehavior.AllowGet);
         }
     }
 }
