@@ -245,8 +245,9 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Shared\_loginParital.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
-    <Content Include="Views\Userinfo\Index.cshtml" />
+    <Content Include="Views\Userinfo\edit.cshtml" />
     <Content Include="Views\Menu\BarMenu.cshtml" />
+    <Content Include="Views\Userinfo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

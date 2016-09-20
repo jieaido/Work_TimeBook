@@ -15,6 +15,12 @@ namespace Entity
         void AddorUpdate(UserInfo userInfo);
         UserInfo DeleteUserinfo(UserInfo userInfo);
         bool ExistUserName(string userName);
+        /// <summary>
+        /// 根据id获取用户信息
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        UserInfo GetUserInfoById(int id);
         int SaveChanges();
     }
 
@@ -53,6 +59,11 @@ namespace Entity
       public bool ExistUserName(string userName)
       {
           return UserInfos.Any(m => m.LoginName == userName);
+      }
+
+      public UserInfo GetUserInfoById(int id)
+      {
+          return UserInfos.FirstOrDefault(u => u.UserInfoId == id);
       }
 
       public int SaveChanges()

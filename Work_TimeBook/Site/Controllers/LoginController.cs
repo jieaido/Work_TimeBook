@@ -47,7 +47,7 @@ namespace Work_TimeBook.Controllers
                     DateTime.Now,
                     exprierTime
                      , true,
-                     "userdata",
+                     valiteid.ToString(),
                      FormsAuthentication.FormsCookiePath);
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(tick));
                     cookie.HttpOnly = true;
