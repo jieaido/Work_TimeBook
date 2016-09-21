@@ -167,5 +167,45 @@ namespace Helper
 
             return result;
         }
-    }
+
+        public static byte[] EncryptStringToBytes(string plainText, byte[] Key, byte[] IV)
+        {
+            if (plainText == null || plainText.Length <= 0)
+                throw new ArgumentNullException("plainText");
+            if (Key == null || Key.Length <= 0)
+                throw new ArgumentNullException("Key");
+            if (IV == null || IV.Length <= 0)
+                throw new ArgumentNullException("IV");
+            byte[] encrypted;
+            using (TripleDESCryptoServiceProvider tdsAlg = new TripleDESCryptoServiceProvider())
+            {
+                tdsAlg.Key = Key;
+                tdsAlg.IV = IV;
+                var encryptor= tdsAlg.CreateEncryptor(tdsAlg.Key, tdsAlg.IV);
+                using (MemoryStream moStreamencrypt=new MemoryStream())
+                {
+                    using (CryptoStream csencrypt=new CryptoStream(moStreamencrypt,encryptor,CryptoStreamMode.Write))
+                    {
+                        using (StreamWriter swencrypt=new StreamWriter(csencrypt))
+                        {
+                            swencrypt.Write(plainText);
+                        }
+                        encrypted = moStreamencrypt.ToArray();
+                    }
+                }
+
+
+            }
+            return encrypted;
+            
+            
+           
+
+
+
+
+
+            return null;
+        }
+     }
 }

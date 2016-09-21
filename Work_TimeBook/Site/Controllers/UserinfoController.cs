@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Entity;
 
 namespace Site.Controllers
@@ -17,12 +18,19 @@ namespace Site.Controllers
         }
 
         // GET: Userinfo
-        public ActionResult Index(int id)
+        public ActionResult Index()
         {
-            var userinfo = iUserinfoRepos.GetUserInfoById(id);
-            if (userinfo!=null)
+            
+            if (User.Identity.IsAuthenticated)
             {
-                return View(userinfo);
+                var formsIdentity = User.Identity as FormsIdentity;
+                int id = Convert.ToInt32(formsIdentity.Ticket.UserData);
+               var userinfo=  iUserinfoRepos.GetUserInfoById(id);
+                if (userinfo != null)
+                {
+                    return View(userinfo);
+                }
+             
             }
             return RedirectToAction("Login", "Login");
         }
