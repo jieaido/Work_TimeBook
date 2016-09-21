@@ -11,6 +11,7 @@ namespace Site.Controllers
     public class MenuController : Controller
     {
         // GET: Menu
+        [ChildActionOnly]
         public ActionResult BarMenu()
         {
             var m1=new Menubar()
@@ -58,7 +59,7 @@ namespace Site.Controllers
                 },
            };
 
-            return PartialView(barmenus)   ;
+            return PartialView("_BarMenu",barmenus)   ;
         }
     }
 }

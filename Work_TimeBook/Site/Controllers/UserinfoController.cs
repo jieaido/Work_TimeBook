@@ -5,9 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Entity;
+using Entity.Model;
 
 namespace Site.Controllers
 {
+    [Authorize]
     public class UserinfoController : Controller
     {
         private IUserinfoRepos iUserinfoRepos;
@@ -33,6 +35,24 @@ namespace Site.Controllers
              
             }
             return RedirectToAction("Login", "Login");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var result= iUserinfoRepos.GetUserInfoById(id);
+            return View(result);
+
+        }
+        [HttpPost]
+        public ActionResult Edit(UserInfo  m)
+        {
+            if (ModelState.IsValid)
+            {
+                iUserinfoRepos.AddorUpdate(m);
+                iUserinfoRepos.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(m);
         }
     }
 }
