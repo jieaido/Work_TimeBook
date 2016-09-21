@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Entity;
 using Entity.Model;
+using Helper;
 
 namespace Site.Controllers
 {
@@ -25,8 +26,9 @@ namespace Site.Controllers
             
             if (User.Identity.IsAuthenticated)
             {
-                var formsIdentity = User.Identity as FormsIdentity;
-                int id = Convert.ToInt32(formsIdentity.Ticket.UserData);
+                //var formsIdentity = User.Identity as FormsIdentity;
+                //int id = Convert.ToInt32(formsIdentity.Ticket.UserData);
+                int id= UserHelper.GetUserinfoId();
                var userinfo=  iUserinfoRepos.GetUserInfoById(id);
                 if (userinfo != null)
                 {
