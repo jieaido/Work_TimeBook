@@ -12,6 +12,6 @@ namespace Entity.Model
         public string PermissName { get; set; }
         public virtual MenuEntity MenuEntity { get; set; }
         public virtual FunctionEntity FunctionEntity { get; set; }
-        public virtual IEnumerable<RoleEntity> Roles { get; set; } 
+        public virtual ICollection<RoleEntity> Roles { get; set; } 
     }
 }

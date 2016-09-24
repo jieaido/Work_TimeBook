@@ -5,6 +5,10 @@ namespace Entity.Model
 {
     public class UserInfoEntity
     {
+        public UserInfoEntity()
+        {
+            Roles=new HashSet<RoleEntity>();
+        }
         /// <summary>
         ///     用户ID
         /// </summary>
@@ -32,7 +36,7 @@ namespace Entity.Model
         /// </summary>
         public string Description { get; set; }
 
-        public virtual  IEnumerable<RoleEntity> Roles { get; set; }
+        public virtual  ICollection<RoleEntity> Roles { get; set; }
          
 
         public virtual TeamEntity Team { get; set; }
