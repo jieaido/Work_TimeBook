@@ -1,4 +1,4 @@
-﻿@model Entity.Model.UserInfo
+﻿@model Entity.Model.UserInfoEntity
 
 @{
     ViewBag.Title = "Index";
@@ -17,10 +17,10 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-            <h4>UserInfo</h4>
+            <h4>UserInfoEntity</h4>
             <hr />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            @Html.HiddenFor(model => model.UserInfoId)
+            @Html.HiddenFor(model => model.UserInfoEntityId)
 
             <div class="form-group">
                 @Html.LabelFor(model => model.LoginName, htmlAttributes: new { @class = "control-label col-md-2" })

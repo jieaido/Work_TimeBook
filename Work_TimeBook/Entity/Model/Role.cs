@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    public class Role
+    public class RoleEntity
     {
-        public int RoleId { get; set; }
+        public int RoleEntityId { get; set; }
 
         public string RoleName { get; set; }
         
-        public virtual  IEnumerable<Permiss> Permisses { get; set; }
+        public virtual  IEnumerable<PermissEntity> Permisses { get; set; }
 
     }
 }

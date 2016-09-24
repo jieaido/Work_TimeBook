@@ -19,13 +19,14 @@ namespace Entity
         //为您要在模型中包含的每种实体类型都添加 DbSet。有关配置和使用 Code First  模型
         //的详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=390109。
 
-        public virtual DbSet<UserInfo> UserInfos { get; set; }
-        public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<UserInfoEntity> UserInfos { get; set; }
+        public virtual DbSet<TeamEntity> Teams { get; set; }
 
-        public DbSet<Role> Roles { get; set; }
+        public virtual DbSet<RoleEntity> Roles { get; set; }
 
-        public DbSet<Permiss> Permisses { get; set; }
-        public virtual DbSet<Menu> Menus { get; set; }
+        public DbSet<PermissEntity> Permisses { get; set; }
+        public virtual DbSet<MenuEntity> Menus { get; set; }
+        public   virtual DbSet<FunctionEntity> FunctionEntities { get; set; } 
     }
 
    

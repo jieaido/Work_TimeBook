@@ -88,13 +88,13 @@ namespace Work_TimeBook.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserInfo userInfo = new UserInfo()
+                UserInfoEntity userInfoEntity = new UserInfoEntity()
                 {
                     LoginName = model.UserName,
                     LoginPwd = model.Password,
                     
                 };
-                _userinfoRepos.AddorUpdate(userInfo);
+                _userinfoRepos.AddorUpdate(userInfoEntity);
                 _userinfoRepos.SaveChanges();
                 return View("Login");
             }

@@ -10,24 +10,24 @@ namespace Entity
 {
     public interface IUserinfoRepos
     {
-        IEnumerable<UserInfo> UserInfos { get; }
+        IEnumerable<UserInfoEntity> UserInfos { get; }
         int ValiteLoginInfo(string loginname, string loginpwd);
-        void AddorUpdate(UserInfo userInfo);
-        UserInfo DeleteUserinfo(UserInfo userInfo);
+        void AddorUpdate(UserInfoEntity userInfoEntity);
+        UserInfoEntity DeleteUserinfo(UserInfoEntity userInfoEntity);
         bool ExistUserName(string userName);
         /// <summary>
         /// 根据id获取用户信息
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        UserInfo GetUserInfoById(int id);
+        UserInfoEntity GetUserInfoById(int id);
         int SaveChanges();
     }
 
   public   class UserinfoRepos : IUserinfoRepos
     {
       private EFDbContext _context=new EFDbContext();
-      public IEnumerable<UserInfo> UserInfos => _context.UserInfos;
+      public IEnumerable<UserInfoEntity> UserInfos => _context.UserInfos;
 
       /// <summary>
         /// 验证登录信息
@@ -40,20 +40,20 @@ namespace Entity
           var userinfo = UserInfos.FirstOrDefault(u => u.LoginName == loginname && u.LoginPwd == loginpwd);
           if (userinfo != null)
           {
-              return userinfo.UserInfoId;
+              return userinfo.UserInfoEntityId;
           }
           else return -1;
 
       }
 
-      public void AddorUpdate(UserInfo userInfo)
+      public void AddorUpdate(UserInfoEntity userInfoEntity)
       {
-           _context.UserInfos.AddOrUpdate(userInfo);
+           _context.UserInfos.AddOrUpdate(userInfoEntity);
       }
 
-      public UserInfo DeleteUserinfo(UserInfo userInfo)
+      public UserInfoEntity DeleteUserinfo(UserInfoEntity userInfoEntity)
       {
-         return _context.UserInfos.Remove(userInfo);
+         return _context.UserInfos.Remove(userInfoEntity);
       }
 
       public bool ExistUserName(string userName)
@@ -61,9 +61,9 @@ namespace Entity
           return UserInfos.Any(m => m.LoginName == userName);
       }
 
-      public UserInfo GetUserInfoById(int id)
+      public UserInfoEntity GetUserInfoById(int id)
       {
-          return UserInfos.FirstOrDefault(u => u.UserInfoId == id);
+          return UserInfos.FirstOrDefault(u => u.UserInfoEntityId == id);
       }
 
       public int SaveChanges()

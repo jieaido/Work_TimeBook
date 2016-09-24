@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace Entity.Model
 {
-    public class Team
+    public class TeamEntity
     {
-        public int TeamId { get; set; }
+        public int TeamEntityId { get; set; }
         public string   TeamName { get; set; }
 
-        public virtual IEnumerable<UserInfo> UserInfos { get; set; }
+        public virtual IEnumerable<UserInfoEntity> UserInfos { get; set; }
     }
 }

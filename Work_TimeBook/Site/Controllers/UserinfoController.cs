@@ -46,7 +46,7 @@ namespace Site.Controllers
 
         }
         [HttpPost]
-        public ActionResult Edit(UserInfo  m)
+        public ActionResult Edit(UserInfoEntity  m)
         {
             if (ModelState.IsValid)
             {
