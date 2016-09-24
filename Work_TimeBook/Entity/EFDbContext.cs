@@ -1,11 +1,8 @@
-﻿using Entity.Model;
+﻿using System.Data.Entity;
+using Entity.Model;
 
 namespace Entity
 {
-    using System;
-    using System.Data.Entity;
-    using System.Linq;
-
     public class EFDbContext : DbContext
     {
         //您的上下文已配置为从您的应用程序的配置文件(App.config 或 Web.config)
@@ -17,18 +14,18 @@ namespace Entity
         public EFDbContext()
             : base("name=work_TimeContext")
         {
-
         }
 
         //为您要在模型中包含的每种实体类型都添加 DbSet。有关配置和使用 Code First  模型
         //的详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=390109。
 
-         public virtual DbSet<UserInfo> UserInfos { get; set; }
-          public virtual DbSet<Team> Teams { get; set; }
+        public virtual DbSet<UserInfo> UserInfos { get; set; }
+        public virtual DbSet<Team> Teams { get; set; }
 
-        public System.Data.Entity.DbSet<Entity.Model.Role> Roles { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
-        public System.Data.Entity.DbSet<Entity.Model.Permiss> Permisses { get; set; }
+        public DbSet<Permiss> Permisses { get; set; }
+        public virtual DbSet<Menu> Menus { get; set; }
     }
 
     //public class MyEntity
