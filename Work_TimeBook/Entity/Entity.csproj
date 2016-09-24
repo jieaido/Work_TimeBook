@@ -54,6 +54,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="EFDbContext.cs" />
     <Compile Include="IUserinfoRepos.cs" />
+    <Compile Include="Model\Function.cs" />
     <Compile Include="Model\Menu.cs" />
     <Compile Include="Model\Permiss.cs" />
     <Compile Include="Model\Role.cs" />
