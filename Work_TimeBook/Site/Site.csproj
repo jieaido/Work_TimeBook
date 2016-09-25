@@ -190,6 +190,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\MenuEntitiesController.cs" />
     <Compile Include="Controllers\UserinfoController.cs" />
     <Compile Include="DI\NinjectDependency.cs" />
     <Compile Include="Global.asax.cs">
@@ -254,8 +255,13 @@
     <Content Include="Views\Shared\_loginParital.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Userinfo\edit.cshtml" />
-    <Content Include="Views\Menu\_BarMenu.cshtml" />
     <Content Include="Views\Userinfo\Index.cshtml" />
+    <Content Include="Views\MenuEntities\Create.cshtml" />
+    <Content Include="Views\MenuEntities\Delete.cshtml" />
+    <Content Include="Views\MenuEntities\Details.cshtml" />
+    <Content Include="Views\MenuEntities\Edit.cshtml" />
+    <Content Include="Views\MenuEntities\Index.cshtml" />
+    <Content Include="Views\Menu\_BarMenu.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

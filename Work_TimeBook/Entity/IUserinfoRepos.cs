@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Entity.Model;
 
 namespace Entity
 {
-    public interface IUserinfoRepos
+    public interface IUserinfoRepos : IBaseRepos<UserInfoEntity>
     {
         IEnumerable<UserInfoEntity> UserInfos { get; }
         int ValiteLoginInfo(string loginname, string loginpwd);
-        void AddorUpdate(UserInfoEntity userInfoEntity);
+
         UserInfoEntity DeleteUserinfo(UserInfoEntity userInfoEntity);
         bool ExistUserName(string userName);
         /// <summary>
@@ -21,13 +22,18 @@ namespace Entity
         /// <param name="id"></param>
         /// <returns></returns>
         UserInfoEntity GetUserInfoById(int id);
-        int SaveChanges();
     }
 
-  public   class UserinfoRepos : IUserinfoRepos
+  public   class UserinfoRepos : BaseRepos<UserInfoEntity>, IUserinfoRepos 
     {
-      private EFDbContext _context=new EFDbContext();
-      public IEnumerable<UserInfoEntity> UserInfos => _context.UserInfos;
+      
+
+        public UserinfoRepos(EFDbContext context) : base(context)
+        {
+
+        }
+
+        public IEnumerable<UserInfoEntity> UserInfos => _Context.UserInfos;
 
       /// <summary>
         /// 验证登录信息
@@ -42,18 +48,13 @@ namespace Entity
           {
               return userinfo.UserInfoEntityId;
           }
-          else return -1;
 
+          return -1;
       }
-
-      public void AddorUpdate(UserInfoEntity userInfoEntity)
-      {
-           _context.UserInfos.AddOrUpdate(userInfoEntity);
-      }
-
+        
       public UserInfoEntity DeleteUserinfo(UserInfoEntity userInfoEntity)
       {
-         return _context.UserInfos.Remove(userInfoEntity);
+         return _Context.UserInfos.Remove(userInfoEntity);
       }
 
       public bool ExistUserName(string userName)
@@ -65,10 +66,7 @@ namespace Entity
       {
           return UserInfos.FirstOrDefault(u => u.UserInfoEntityId == id);
       }
-
-      public int SaveChanges()
-      {
-          return _context.SaveChanges();
-      }
+        
+     
     }
 }

@@ -4,7 +4,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Entity;
+using Entity.InterFace;
 using Ninject;
+using Ninject.Web.Common;
 
 namespace Site.DI
 {
@@ -31,6 +33,8 @@ namespace Site.DI
         private void AddBindings()
         {
             kernel.Bind<IUserinfoRepos>().To<UserinfoRepos>();
+            kernel.Bind<IMenuEntityRepos>().To<MenuEntityRepos>();
+            kernel.Bind<EFDbContext>().ToSelf().InRequestScope();
         }
     }
 }
