@@ -9,7 +9,7 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.ParentMenuId)
@@ -32,32 +32,61 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ParentMenuId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MenuName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MenuDisplayName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ControllerName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ActionName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SortId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.MenuEntityId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.MenuEntityId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MenuEntityId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @{
+                    var result = Model.FirstOrDefault(m => m.MenuEntityId == item.ParentMenuId);
+                    if (result != null)
+                    {
+                        @Html.DisplayFor(m => result.MenuDisplayName)
+                        ;
+                    }
+                    else
+                    {
+                        <span>父节点</span>
+                    }
+
+                }
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MenuDisplayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ControllerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SortId)
+            </td>
+            <td>
+
+                @Html.ActionLink("Edit", "Edit", new {id = item.MenuEntityId}) |
+                @*Html.ActionLink("Details", "Details", new { id=item.MenuEntityId }) |*@
+                @Ajax.ActionLink("Delete", "Delete", new {id = item.MenuEntityId}, new AjaxOptions()
+                {
+                    HttpMethod = "Post",
+                    Confirm = "确认要删除该选项吗？",
+                    OnSuccess = "OnSuccess"
+
+                })
+
+            </td>
+        </tr>
+    }
 
 </table>
+@section scripts{
+    <script type="text/javascript">
+        function OnSuccess(data) {
+            location.reload();
+        }
+    </script>
+}

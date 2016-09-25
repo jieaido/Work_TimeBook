@@ -133,7 +133,7 @@ namespace Site.Controllers
 
         // POST: MenuEntities/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             MenuEntity menuEntity = _iMenuEntityRepos.GetSet().Find(id);
