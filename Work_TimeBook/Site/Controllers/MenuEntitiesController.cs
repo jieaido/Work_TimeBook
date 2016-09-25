@@ -45,6 +45,7 @@ namespace Site.Controllers
         // GET: MenuEntities/Create
         public ActionResult Create()
         {
+            GetRootMenuToVIewBag();
             return View();
         }
 
@@ -61,7 +62,7 @@ namespace Site.Controllers
                 _iMenuEntityRepos.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            
             return View(menuEntity);
         }
 
@@ -77,7 +78,13 @@ namespace Site.Controllers
             {
                 return HttpNotFound();
             }
-            var ss=new List<SelectListItem>();
+            GetRootMenuToVIewBag();
+            return View(menuEntity);
+        }
+
+        private void GetRootMenuToVIewBag()
+        {
+            var ss = new List<SelectListItem>();
             var result = from s in _iMenuEntityRepos.GetAllRootMenus()
                 select new SelectListItem()
                 {
@@ -88,11 +95,9 @@ namespace Site.Controllers
             {
                 Text = "根菜单",
                 Value = "-1"
-                
             });
-             ss.AddRange(result);
-            ViewBag.parentid= ss;
-            return View(menuEntity);
+            ss.AddRange(result);
+            ViewBag.parentid = ss;
         }
 
         // POST: MenuEntities/Edit/5

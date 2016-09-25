@@ -5,11 +5,13 @@ using System.Web;
 
 namespace Site.Models
 {
-    public class Menubar
+    public class MenubarViewModel
     {
         public int MenuId { get; set; } 
-        public string MenusNam { get; set; }
+        public string MenusName { get; set; }
         public int ParentId { get; set; }
+        public string ControllerName { get; set; }
+        public string ActionName { get; set; }
         
     }
 }
