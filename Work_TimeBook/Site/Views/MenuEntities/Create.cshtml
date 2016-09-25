@@ -77,21 +77,21 @@
 </div>
 @section scripts
 {
+
     <script type="text/javascript">
         $(function() {
 
 
-           var checkSelect= function() {
-               if ($("#Parentid select").val() === "-1") {
+            //var checkSelect= function() {
+            //    if ($("#Parentid select").val() === "-1") {
 
-                   $("#controllername").hide();
+            //        $("#controllername").hide();
 
-               }
-            }
-           //checkSelect();
+            //    }
+            // }
+            //checkSelect();
 
-
-            $("#Parentid").change(function() {
+            $("#Parentid").change(function () {
 
                 if ($("#Parentid select").val() === "-1") {
 
@@ -101,7 +101,6 @@
                     $("#controllername").show();
                 }
             });
-
         })
     </script>
 }

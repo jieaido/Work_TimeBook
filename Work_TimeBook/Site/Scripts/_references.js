@@ -8,3 +8,4 @@
 /// <reference path="jquery-3.1.0.min.js" />
 /// <reference path="jquery-3.1.0.slim.min.js" />
 /// <reference path="modernizr-2.6.2.js" />
+/// <reference path="myscripts/myjs.js" />
