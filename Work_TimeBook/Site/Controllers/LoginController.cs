@@ -45,12 +45,15 @@ namespace Work_TimeBook.Controllers
                     FormsAuthenticationTicket tick = new FormsAuthenticationTicket(1,
                     model.LoginName,
                     DateTime.Now,
+                    //这个是票据的过期时间
                     exprierTime
                      , true,
                      valiteid.ToString(),
                      FormsAuthentication.FormsCookiePath);
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(tick));
                     cookie.HttpOnly = true;
+                    //这个是设置cookie的过期时间
+                    cookie.Expires = DateTime.Now.AddDays(3);
                     HttpContext.Response.Cookies.Add(cookie);
                 }
                 else
