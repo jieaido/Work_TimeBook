@@ -73,7 +73,7 @@
                 @Ajax.ActionLink("Delete", "Delete", new {id = item.MenuEntityId}, new AjaxOptions()
                 {
                     HttpMethod = "Post",
-                    Confirm = "确认要删除该选项吗？",
+                    Confirm = "确认要删除该选项吗？该选项的所有子菜单也会被删除",
                     OnSuccess = "OnSuccess"
 
                 })
@@ -86,6 +86,7 @@
 @section scripts{
     <script type="text/javascript">
         function OnSuccess(data) {
+            //alert(data.data);
             location.reload();
         }
     </script>

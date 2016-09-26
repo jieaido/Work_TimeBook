@@ -136,10 +136,10 @@ namespace Site.Controllers
         //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            MenuEntity menuEntity = _iMenuEntityRepos.GetSet().Find(id);
-            _iMenuEntityRepos.GetSet().Remove(menuEntity);
+           
+         _iMenuEntityRepos.DeleteLeadMenuAndSelf(id);
             _iMenuEntityRepos.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(new {data="删除成功！"});
         }
 
         protected override void Dispose(bool disposing)
