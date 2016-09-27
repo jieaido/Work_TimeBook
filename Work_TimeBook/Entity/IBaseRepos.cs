@@ -17,6 +17,7 @@ namespace Entity
         IEnumerable<T> Where(Expression<Func<T,bool>> whereFuncExpression);
         DbSet<T> GetSet();
         EFDbContext GetContext();
+       
     }
 
     
@@ -55,6 +56,8 @@ namespace Entity
         {
             return _Context;
         }
+
+       
 
         public  virtual int SaveChanges()
         {

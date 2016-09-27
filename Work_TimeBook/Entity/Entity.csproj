@@ -60,8 +60,10 @@
     <Compile Include="Model\Menu.cs" />
     <Compile Include="Model\Permiss.cs" />
     <Compile Include="Model\Role.cs" />
+    <Compile Include="Model\StationEntity.cs" />
     <Compile Include="Model\Team.cs" />
     <Compile Include="Model\UserInfoEntity.cs" />
+    <Compile Include="Model\WorkTimeEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

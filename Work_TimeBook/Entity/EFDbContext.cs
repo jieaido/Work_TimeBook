@@ -27,6 +27,8 @@ namespace Entity
         public DbSet<PermissEntity> Permisses { get; set; }
         public virtual DbSet<MenuEntity> Menus { get; set; }
         public   virtual DbSet<FunctionEntity> FunctionEntities { get; set; } 
+        public virtual  DbSet<StationEntity> StationEntities { get; set; }
+        public virtual DbSet<WorkTimeEntity> WorkTimeEntities { get; set; } 
     }
 
    

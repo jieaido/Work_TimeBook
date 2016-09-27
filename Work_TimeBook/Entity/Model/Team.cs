@@ -11,6 +11,9 @@ namespace Entity.Model
         public int TeamEntityId { get; set; }
         public string   TeamName { get; set; }
 
+        public virtual IEnumerable<StationEntity> StationEntity { get; set; }
         public virtual ICollection<UserInfoEntity> UserInfos { get; set; }
+        public virtual IEnumerable<UserInfoEntity> AdminUserinfos { get; set; }
     }
-}
+    }
+
