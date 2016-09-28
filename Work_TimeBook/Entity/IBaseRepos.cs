@@ -15,9 +15,16 @@ namespace Entity
         int SaveChanges();
         void Delete(T entity);
         IEnumerable<T> Where(Expression<Func<T,bool>> whereFuncExpression);
-        DbSet<T> GetSet();
-        EFDbContext GetContext();
+
+        IEnumerable<T> ToOrderList<TKey>(Expression<Func<T,TKey>> whereFuncExpression);
+        IEnumerable<T> ToList();
+            
+            T FirstOrDefault(Expression<Func<T, bool>> whereFuncExpression);
+        T FindById(int id);
        
+        void Dispose();
+
+        
     }
 
     
@@ -47,17 +54,43 @@ namespace Entity
            return  _Context.Set<T>().Where(whereFuncExpression);
         }
 
-        public DbSet<T> GetSet()
+        public IEnumerable<T> ToOrderList<TKey>(Expression<Func<T, TKey>> whereFuncExpression)
+        {
+            return GetSet().OrderBy(whereFuncExpression);
+        }
+
+        
+
+        public IEnumerable<T> ToList()
+        {
+            return GetSet().ToList();
+        }
+
+        public T FirstOrDefault(Expression<Func<T, bool>> whereFuncExpression)
+        {
+            return GetSet().FirstOrDefault(whereFuncExpression);
+        }
+
+        public T FindById(int id)
+        {
+            return GetSet().Find(id);
+        }
+
+        protected DbSet<T> GetSet()
         {
             return _Context.Set<T>();
         }
 
-        public EFDbContext GetContext()
+        protected EFDbContext GetContext()
         {
             return _Context;
         }
 
-       
+        public void Dispose()
+        {
+            GetContext().Dispose();
+        }
+
 
         public  virtual int SaveChanges()
         {

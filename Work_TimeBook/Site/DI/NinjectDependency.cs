@@ -34,6 +34,7 @@ namespace Site.DI
         {
             kernel.Bind<IUserinfoRepos>().To<UserinfoRepos>();
             kernel.Bind<IMenuEntityRepos>().To<MenuEntityRepos>();
+            kernel.Bind<ITeamEntityRepos>().To<TeamEntityRepos>();
             kernel.Bind<EFDbContext>().ToSelf().InRequestScope();
         }
     }

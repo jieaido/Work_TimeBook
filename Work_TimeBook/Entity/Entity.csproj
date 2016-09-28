@@ -55,6 +55,7 @@
     <Compile Include="EFDbContext.cs" />
     <Compile Include="IBaseRepos.cs" />
     <Compile Include="InterFace\IMenuEntityRepos.cs" />
+    <Compile Include="InterFace\ITeamEntityRepos.cs" />
     <Compile Include="IUserinfoRepos.cs" />
     <Compile Include="Model\Function.cs" />
     <Compile Include="Model\Menu.cs" />

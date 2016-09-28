@@ -26,7 +26,7 @@ namespace Site.Controllers
             {
                
            };
-            var ss = iMenuEntityRepos.GetSet().OrderBy(m => m.SortId).AsEnumerable();
+            var ss = iMenuEntityRepos.ToOrderList(m=>m.ActionName);
             
           
             return PartialView("_BarMenu",ss)   ;

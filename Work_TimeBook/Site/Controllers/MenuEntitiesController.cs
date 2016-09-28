@@ -21,31 +21,10 @@ namespace Site.Controllers
             this._iMenuEntityRepos = iMenuEntityRepos;
         }
 
-        // GET: MenuEntities
-        public ActionResult Index()
-        {
-            return View(_iMenuEntityRepos.GetSet().ToList());
-        }
-
-        // GET: MenuEntities/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MenuEntity menuEntity = _iMenuEntityRepos.GetSet().Find(id);
-            if (menuEntity == null)
-            {
-                return HttpNotFound();
-            }
-            return View(menuEntity);
-        }
-
         // GET: MenuEntities/Create
         public ActionResult Create()
         {
-            GetRootMenuToVIewBag();
+            GetRootMenuToViewBag();
             return View();
         }
 
@@ -58,11 +37,52 @@ namespace Site.Controllers
         {
             if (ModelState.IsValid)
             {
-                _iMenuEntityRepos.GetSet().Add(menuEntity);
+                _iMenuEntityRepos.AddorUpdate(menuEntity);
                 _iMenuEntityRepos.SaveChanges();
                 return RedirectToAction("Index");
             }
-            
+
+            return View(menuEntity);
+        }
+
+        // GET: MenuEntities/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MenuEntity menuEntity = _iMenuEntityRepos.FindById((int) id);
+            if (menuEntity == null)
+            {
+                return HttpNotFound();
+            }
+            return View(menuEntity);
+        }
+
+        // POST: MenuEntities/Delete/5
+        [HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+
+            _iMenuEntityRepos.DeleteLeadMenuAndSelf(id);
+            _iMenuEntityRepos.SaveChanges();
+            return Json(new { data = "删除成功！" });
+        }
+
+        // GET: MenuEntities/Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            MenuEntity menuEntity = _iMenuEntityRepos.FindById((int) id);
+            if (menuEntity == null)
+            {
+                return HttpNotFound();
+            }
             return View(menuEntity);
         }
 
@@ -73,31 +93,13 @@ namespace Site.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            MenuEntity menuEntity = _iMenuEntityRepos.GetSet().Find(id);
+            MenuEntity menuEntity = _iMenuEntityRepos.FindById((int)id);
             if (menuEntity == null)
             {
                 return HttpNotFound();
             }
-            GetRootMenuToVIewBag();
+            GetRootMenuToViewBag();
             return View(menuEntity);
-        }
-
-        private void GetRootMenuToVIewBag()
-        {
-            var ss = new List<SelectListItem>();
-            var result = from s in _iMenuEntityRepos.GetAllRootMenus()
-                select new SelectListItem()
-                {
-                    Text = s.MenuDisplayName,
-                    Value = s.MenuEntityId.ToString()
-                };
-            ss.Add(new SelectListItem()
-            {
-                Text = "根菜单",
-                Value = "-1"
-            });
-            ss.AddRange(result);
-            ViewBag.parentid = ss;
         }
 
         // POST: MenuEntities/Edit/5
@@ -116,39 +118,36 @@ namespace Site.Controllers
             return View(menuEntity);
         }
 
-        // GET: MenuEntities/Delete/5
-        public ActionResult Delete(int? id)
+        // GET: MenuEntities
+        public ActionResult Index()
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            MenuEntity menuEntity = _iMenuEntityRepos.GetSet().Find(id);
-            if (menuEntity == null)
-            {
-                return HttpNotFound();
-            }
-            return View(menuEntity);
+            return View(_iMenuEntityRepos.ToList());
         }
-
-        // POST: MenuEntities/Delete/5
-        [HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-           
-         _iMenuEntityRepos.DeleteLeadMenuAndSelf(id);
-            _iMenuEntityRepos.SaveChanges();
-            return Json(new {data="删除成功！"});
-        }
-
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-               _iMenuEntityRepos.GetContext().Dispose();
+                _iMenuEntityRepos.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private void GetRootMenuToViewBag()
+        {
+            var ss = new List<SelectListItem>();
+            var result = from s in _iMenuEntityRepos.GetAllRootMenus()
+                select new SelectListItem()
+                {
+                    Text = s.MenuDisplayName,
+                    Value = s.MenuEntityId.ToString()
+                };
+            ss.Add(new SelectListItem()
+            {
+                Text = "根菜单",
+                Value = "-1"
+            });
+            ss.AddRange(result);
+            ViewBag.parentid = ss;
         }
     }
 }

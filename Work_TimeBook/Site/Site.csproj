@@ -191,6 +191,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\MenuEntitiesController.cs" />
+    <Compile Include="Controllers\TeamEntitiesController.cs" />
     <Compile Include="Controllers\UserinfoController.cs" />
     <Compile Include="DI\NinjectDependency.cs" />
     <Compile Include="Global.asax.cs">
@@ -263,6 +264,11 @@
     <Content Include="Views\MenuEntities\Edit.cshtml" />
     <Content Include="Views\MenuEntities\Index.cshtml" />
     <Content Include="Views\Menu\_BarMenu.cshtml" />
+    <Content Include="Views\TeamEntities\Create.cshtml" />
+    <Content Include="Views\TeamEntities\Delete.cshtml" />
+    <Content Include="Views\TeamEntities\Details.cshtml" />
+    <Content Include="Views\TeamEntities\Edit.cshtml" />
+    <Content Include="Views\TeamEntities\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
