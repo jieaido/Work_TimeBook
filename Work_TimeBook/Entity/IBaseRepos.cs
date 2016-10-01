@@ -14,13 +14,13 @@ namespace Entity
         void AddorUpdate(T entity);
         int SaveChanges();
         void Delete(T entity);
-        IEnumerable<T> Where(Expression<Func<T,bool>> whereFuncExpression);
+        IQueryable<T> Where(Expression<Func<T,bool>> whereFuncExpression);
 
-        IEnumerable<T> ToOrderList<TKey>(Expression<Func<T,TKey>> whereFuncExpression);
+        IQueryable<T> ToOrderList<TKey>(Expression<Func<T,TKey>> whereFuncExpression);
         IEnumerable<T> ToList();
             
             T FirstOrDefault(Expression<Func<T, bool>> whereFuncExpression);
-        T FindById(int id);
+        T FindById(int? id);
        
         void Dispose();
 
@@ -49,12 +49,12 @@ namespace Entity
             _Context.Set<T>().Remove(entity);
         }
 
-        public virtual IEnumerable<T> Where(Expression<Func<T, bool>> whereFuncExpression)
+        public virtual IQueryable<T> Where(Expression<Func<T, bool>> whereFuncExpression)
         {
            return  _Context.Set<T>().Where(whereFuncExpression);
         }
 
-        public IEnumerable<T> ToOrderList<TKey>(Expression<Func<T, TKey>> whereFuncExpression)
+        public IQueryable<T> ToOrderList<TKey>(Expression<Func<T, TKey>> whereFuncExpression)
         {
             return GetSet().OrderBy(whereFuncExpression);
         }
@@ -71,7 +71,7 @@ namespace Entity
             return GetSet().FirstOrDefault(whereFuncExpression);
         }
 
-        public T FindById(int id)
+        public T FindById(int? id)
         {
             return GetSet().Find(id);
         }
