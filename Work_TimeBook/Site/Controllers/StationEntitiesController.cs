@@ -48,10 +48,17 @@ namespace Site.Controllers
         // GET: StationEntities/Create
         public ActionResult Create()
         {
-            var allTeams = _iStationEntityRepos.GetAllTeams();
-           SelectList sl=new SelectList(allTeams, "TeamEntityId", "TeamName");
-            ViewBag.sl = sl;
+            GetTeamValueAndSetViewBag();
             return View();
+        }
+        /// <summary>
+        /// 获取team生成selectlist
+        /// </summary>
+        private void GetTeamValueAndSetViewBag()
+        {
+            var allTeams = _iStationEntityRepos.GetAllTeams();
+            SelectList sl = new SelectList(allTeams, "TeamEntityId", "TeamName");
+            ViewBag.sl = sl;
         }
 
         // POST: StationEntities/Create
@@ -84,6 +91,7 @@ namespace Site.Controllers
             {
                 return HttpNotFound();
             }
+        GetTeamValueAndSetViewBag();
             return View(stationEntity);
         }
 
@@ -92,10 +100,11 @@ namespace Site.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StationId,StationName,Derscpion")] StationEntity stationEntity)
+        public ActionResult Edit([Bind(Include = "StationId,StationName,Derscpion,TeamEntity")] StationEntity stationEntity)
         {
             if (ModelState.IsValid)
             {
+                stationEntity.TeamEntity = _iTeamEntityRepos.FindById(stationEntity.TeamEntity.TeamEntityId);
                 _iStationEntityRepos.AddorUpdate(stationEntity);
                 _iStationEntityRepos.SaveChanges();
                 return RedirectToAction("Index");
