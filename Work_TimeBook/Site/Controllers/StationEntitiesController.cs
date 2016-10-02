@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -20,7 +21,7 @@ namespace Site.Controllers
         public StationEntitiesController(IStationEntityRepos iStationEntityRepos, ITeamEntityRepos iTeamEntityRepos)
         {
             this._iStationEntityRepos = iStationEntityRepos;
-            _iTeamEntityRepos = iTeamEntityRepos;
+            this._iTeamEntityRepos = iTeamEntityRepos;
         }
 
 
@@ -100,12 +101,11 @@ namespace Site.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StationId,StationName,Derscpion,TeamEntity")] StationEntity stationEntity)
+        public ActionResult Edit(StationEntity stationEntity)
         {
             if (ModelState.IsValid)
             {
-                stationEntity.TeamEntity = _iTeamEntityRepos.FindById(stationEntity.TeamEntity.TeamEntityId);
-                _iStationEntityRepos.AddorUpdate(stationEntity);
+                _iStationEntityRepos.SetModified(stationEntity);
                 _iStationEntityRepos.SaveChanges();
                 return RedirectToAction("Index");
             }

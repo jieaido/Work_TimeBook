@@ -1,0 +1,112 @@
+﻿@model Site.Models.WorkTimeViewModel
+
+@{
+    ViewBag.Title = "Create";
+}
+<link href="~/Content/smalot-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>WorkTimeEntity</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.WtStartDateTime, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                <input type="text" id="WtStartDateTime" name="WtStartDateTime" class="form-control"/>
+                @*@Html.EditorFor(model => model.WtStartDateTime, new {htmlAttributes = new {@class = "form-control"}})*@
+                @Html.ValidationMessageFor(model => model.WtStartDateTime, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.WtOverDateTime, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                <input type="datetime" id="WtOverDateTime" name="WtOverDateTime" class="form-control"/>
+                @*@Html.EditorFor(model => model.WtOverDateTime, new {htmlAttributes = new {@class = "form-control"}})*@
+                @Html.ValidationMessageFor(model => model.WtOverDateTime, "", new {@class = "text-danger"})
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StationEntityIds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<input type="text"  id="WtDateTime" class="form-control"  />*@
+                @Html.DropDownListFor(model => model.StationEntityIds, Model.SelectStationid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WtOverDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WtValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WtValue, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WtValue, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WtContent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.WtContent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WtContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Remarks, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Remarks, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Remarks, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.CreateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CreateTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CreateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+@section scripts
+{
+
+    <script src="~/Scripts/smalot-datetimepicker/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript">
+        var mydate = new Date();
+        $('#WtStartDateTime').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+           
+            todayBtn: true,
+            todayHighlight: true,
+            autoclose:true,
+            startDate: "@DateTime.Now.Date.ToShortDateString()",
+            language: "zh-CN",
+
+        });$('#WtOverDateTime').datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+           
+            todayBtn: true,
+            todayHighlight: true,
+            autoclose:true,
+            startDate: "@DateTime.Now.Date.ToShortDateString()",
+            language: "zh-CN",
+
+        });
+    </script>
+}

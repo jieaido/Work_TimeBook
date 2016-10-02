@@ -36,6 +36,8 @@ namespace Site.DI
             kernel.Bind<IMenuEntityRepos>().To<MenuEntityRepos>();
             kernel.Bind<ITeamEntityRepos>().To<TeamEntityRepos>();
             kernel.Bind<IStationEntityRepos>().To<StationEntityRepos>();
+            kernel.Bind<IWorkTimeRepos>().To<WorkTimeRepos>();
+
             kernel.Bind<EFDbContext>().ToSelf().InRequestScope();
         }
     }

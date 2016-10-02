@@ -23,8 +23,11 @@ namespace Entity
         T FindById(int? id);
        
         void Dispose();
+        EntityState GetEntityState(T t);
+        void Attach(T entity);
+       // EFDbContext GetContext();
+        bool SetModified(T entity);
 
-        
     }
 
     
@@ -40,7 +43,7 @@ namespace Entity
 
         public virtual void AddorUpdate(T entity)
         {
-            
+           
             _Context.Set<T>().AddOrUpdate(entity);
         }
 
@@ -91,10 +94,32 @@ namespace Entity
             GetContext().Dispose();
         }
 
+        public EntityState GetEntityState(T t)
+        {
+            return _Context.Entry(t).State;
+        }
+
+        public void Attach(T entity)
+        {
+            GetSet().Attach(entity);
+        }
+
+        public bool SetModified(T entity)
+        {
+            GetContext().Entry(entity).State=EntityState.Modified;
+            return true;
+        }
+
 
         public  virtual int SaveChanges()
         {
+            
             return _Context.SaveChanges();
         }
+
+        //EFDbContext IBaseRepos<T>.GetContext()
+        //{
+        //    return _Context;
+        //}
     }
 }

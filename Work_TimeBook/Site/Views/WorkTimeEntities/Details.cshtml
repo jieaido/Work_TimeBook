@@ -1,0 +1,58 @@
+﻿@model Entity.Model.WorkTimeEntity
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>WorkTimeEntity</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.WtDateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WtDateTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WtValue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WtValue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WtContent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WtContent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Remarks)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreateTime)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.WorkTimeId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

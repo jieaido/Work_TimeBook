@@ -57,9 +57,15 @@
     <Compile Include="InterFace\IMenuEntityRepos.cs" />
     <Compile Include="InterFace\IStationEntityRepos.cs" />
     <Compile Include="InterFace\ITeamEntityRepos.cs" />
+    <Compile Include="InterFace\IWorkTimeRepos.cs" />
     <Compile Include="IUserinfoRepos.cs" />
     <Compile Include="Model\Function.cs" />
     <Compile Include="Model\Menu.cs" />
+    <Compile Include="Model\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Model\Permiss.cs" />
     <Compile Include="Model\Role.cs" />
     <Compile Include="Model\StationEntity.cs" />
@@ -70,6 +76,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Model\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

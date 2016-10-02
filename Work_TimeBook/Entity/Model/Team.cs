@@ -10,7 +10,7 @@ namespace Entity.Model
     {
         public TeamEntity ()
         {
-            StationEntity=new HashSet<StationEntity>();
+            //StationEntity=new HashSet<StationEntity>();
             UserInfos=new HashSet<UserInfoEntity>();
             AdminUserinfos=new List<UserInfoEntity>();
         }

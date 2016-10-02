@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Entity.Model.WorkTimeEntity>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WtStartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WtValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WtContent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remarks)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WtStartDateTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WtValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WtContent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remarks)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.WorkTimeId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.WorkTimeId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.WorkTimeId })
+        </td>
+    </tr>
+}
+
+</table>
