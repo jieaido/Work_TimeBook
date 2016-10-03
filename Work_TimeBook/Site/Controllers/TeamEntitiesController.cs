@@ -59,6 +59,7 @@ namespace Site.Controllers
         {
             if (ModelState.IsValid)
             {
+                var sss= IteamEntityRepos.GetEntityState(teamEntity);
                 IteamEntityRepos.AddorUpdate(teamEntity);
                 IteamEntityRepos.SaveChanges();
                 return RedirectToAction("Index");
@@ -91,6 +92,7 @@ namespace Site.Controllers
         {
             if (ModelState.IsValid)
             {
+                var sss = IteamEntityRepos.GetEntityState(teamEntity);
                 IteamEntityRepos.AddorUpdate(teamEntity);
                 IteamEntityRepos.SaveChanges();
                 return RedirectToAction("Index");

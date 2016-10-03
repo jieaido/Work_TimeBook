@@ -67,11 +67,11 @@ namespace Site.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StationId,StationName,TeamEntity")] StationEntity stationEntity)
+        public ActionResult Create( StationEntity stationEntity)
         {
             if (ModelState.IsValid)
             {
-                stationEntity.TeamEntity = _iTeamEntityRepos.FindById(stationEntity.TeamEntity.TeamEntityId);
+                stationEntity.TeamEntities = _iTeamEntityRepos.FindById(stationEntity.TeamEntities.TeamEntityId);
                 _iStationEntityRepos.AddorUpdate(stationEntity);
                 _iStationEntityRepos.SaveChanges();
                 return RedirectToAction("Index");
@@ -105,8 +105,23 @@ namespace Site.Controllers
         {
             if (ModelState.IsValid)
             {
-                _iStationEntityRepos.SetModified(stationEntity);
-                _iStationEntityRepos.SaveChanges();
+                EFDbContext db=new EFDbContext();
+               // _iStationEntityRepos.SetModified(stationEntity);
+               // var id = stationEntity.TeamEntities.TeamEntityId;
+                //stationEntity.TeamEntities = null;
+                var ss3= db.Entry(stationEntity).State;
+                //stationEntity = db.StationEntities.Find(1);
+                //var ss5= db.Entry(db.StationEntities.Find(id)).State;
+                db.Entry(stationEntity).State=EntityState.Unchanged;
+                //db.Entry(stationEntity.TeamEntities).State = EntityState.Modified;
+                stationEntity.TeamEntities = db.Teams.Find(2);
+                var ss = db.Entry(stationEntity.TeamEntities).State;
+                
+               
+                var ss2= db.Entry(stationEntity.TeamEntities).State;
+                var ss4= db.Entry(stationEntity).State;
+                db.Entry(stationEntity).State=EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(stationEntity);

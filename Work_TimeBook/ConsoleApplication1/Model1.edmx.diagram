@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="80d8f254bca9473f96a74437a656ebb1" Name="Diagram1" ZoomLevel="100" >
+        <EntityTypeShape EntityType="Model1.FunctionEntities" Width="1.5" PointX="1.5" PointY="18.875" />
+        <EntityTypeShape EntityType="Model1.MenuEntities" Width="1.5" PointX="1.5" PointY="21.5" />
+        <EntityTypeShape EntityType="Model1.PermissEntities" Width="1.5" PointX="1.5" PointY="15.25" />
+        <EntityTypeShape EntityType="Model1.RoleEntities" Width="1.5" PointX="0.75" PointY="10.5" />
+        <EntityTypeShape EntityType="Model1.StationEntity" Width="1.5" PointX="4.625" PointY="4.875" />
+        <EntityTypeShape EntityType="Model1.TeamEntity" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="Model1.UserInfoEntity" Width="2.75" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="Model1.WorkTimeEntity" Width="3" PointX="7.25" PointY="4.25" />
+        <AssociationConnector Association="Model1.FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId" />
+        <AssociationConnector Association="Model1.FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId" />
+        <AssociationConnector Association="Model1.RoleEntityPermissEntities" />
+        <AssociationConnector Association="Model1.UserInfoEntitiesTeamEntities" />
+        <AssociationConnector Association="Model1.StationEntitiesTeamEntities" />
+        <AssociationConnector Association="Model1.WorkTimeEntitiesStationEntities" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

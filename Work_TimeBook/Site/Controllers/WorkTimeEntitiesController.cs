@@ -49,37 +49,37 @@ namespace Site.Controllers
         }
 
         // GET: WorkTimeEntities/Create
-        public ActionResult Create()
-        {
-           var re = _iStationEntityRepos.GetAllTeams();
-            var result= (from teamEntity in re
-                from stationEntity in teamEntity.StationEntity
-                select new SelectListItem()
-                {
-                    Group = new SelectListGroup()
-                    {
-                        Name = teamEntity.TeamName
-                    },
-                    Text = stationEntity.StationName, Value = stationEntity.StationId.ToString()
-                }).ToList();
-            WorkTimeViewModel vm=new WorkTimeViewModel()
-            {
-                SelectStationid = result
-            };
-            return View(vm);
-            //foreach (var stationEntity in teamEntity.StationEntity)
-            //{
-            //    var ss=new  SelectListItem()
-            //    {
-            //        Group = new SelectListGroup()
-            //        {
-            //            Name = teamEntity.TeamName
-            //        },Text = stationEntity.StationName,
-            //        Value = stationEntity.StationId.ToString()
-            //    };
-            //    result.Add(ss);
-            //}
-        }
+        //public ActionResult Create()
+        //{
+        //   var re = _iStationEntityRepos.GetAllTeams();
+        //    var result= (from teamEntity in re
+        //        from stationEntity in teamEntity.StationEntity
+        //        select new SelectListItem()
+        //        {
+        //            Group = new SelectListGroup()
+        //            {
+        //                Name = teamEntity.TeamName
+        //            },
+        //            Text = stationEntity.StationName, Value = stationEntity.StationId.ToString()
+        //        }).ToList();
+        //    WorkTimeViewModel vm=new WorkTimeViewModel()
+        //    {
+        //        SelectStationid = result
+        //    };
+        //    return View(vm);
+        //    //foreach (var stationEntity in teamEntity.StationEntity)
+        //    //{
+        //    //    var ss=new  SelectListItem()
+        //    //    {
+        //    //        Group = new SelectListGroup()
+        //    //        {
+        //    //            Name = teamEntity.TeamName
+        //    //        },Text = stationEntity.StationName,
+        //    //        Value = stationEntity.StationId.ToString()
+        //    //    };
+        //    //    result.Add(ss);
+        //    //}
+        //}
 
         // POST: WorkTimeEntities/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
@@ -96,8 +96,8 @@ namespace Site.Controllers
                {
                     Remarks = model.Remarks,
                    // StationEntityId = model.StationEntityIds,
-                    StationEntity = _iStationEntityRepos.FindById(model.StationEntityIds),
-                   TeamEntityId = _iStationEntityRepos.FindById(model.StationEntityIds).TeamEntityId,
+                   // StationEntity = _iStationEntityRepos.FindById(model.StationEntityIds),
+                   //TeamEntityId = _iStationEntityRepos.FindById(model.StationEntityIds).TeamEntityId,
                    WtContent=model.WtContent,
                    WtStartDateTime = model.WtStartDateTime,
                    WtOverDateTime = model.WtOverDateTime,

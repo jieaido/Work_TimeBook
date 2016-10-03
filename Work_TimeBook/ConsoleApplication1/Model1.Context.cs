@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Entity
+namespace ConsoleApplication1
 {
     using System;
     using System.Data.Entity;
@@ -25,8 +25,13 @@ namespace Entity
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<team> teamSet { get; set; }
-        public virtual DbSet<station> stationSet { get; set; }
-        public virtual DbSet<worktime> worktimeSet { get; set; }
+        public virtual DbSet<FunctionEntities> FunctionEntities { get; set; }
+        public virtual DbSet<MenuEntities> MenuEntities { get; set; }
+        public virtual DbSet<PermissEntities> PermissEntities { get; set; }
+        public virtual DbSet<RoleEntities> RoleEntities { get; set; }
+        public virtual DbSet<StationEntity> StationEntities { get; set; }
+        public virtual DbSet<TeamEntity> TeamEntities { get; set; }
+        public virtual DbSet<UserInfoEntity> UserInfoEntities { get; set; }
+        public virtual DbSet<WorkTimeEntity> WorkTimeEntities { get; set; }
     }
 }

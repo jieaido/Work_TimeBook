@@ -18,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Derscpion)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TeamEntity)
+            @Html.DisplayNameFor(model => model.TeamEntities)
         </th>
         <th></th>
     </tr>
@@ -32,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.Derscpion)
         </td>
         <td>
-            @Html.DisplayFor(modelitem=>item.TeamEntity.TeamName)
+            @Html.DisplayFor(modelitem=>item.TeamEntities.TeamName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.StationId }) |

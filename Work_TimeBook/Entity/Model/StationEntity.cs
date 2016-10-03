@@ -9,17 +9,19 @@ namespace Entity.Model
 {
     public class StationEntity
     {
+        public StationEntity()
+        {
+            this.WorkTimeEntities = new HashSet<WorkTimeEntity>();
+        }
         [Key]
         public int StationId { get; set; }
-        public String StationName { get; set; }
+        public string StationName { get; set; }
         public string Derscpion { get; set; }
-        /// <summary>
-        /// 迫不得已只能建立的外键列
-        /// </summary>
-        public int TeamEntityId { get; set; }
-        public virtual TeamEntity TeamEntity { get; set; }
-        public virtual ICollection<WorkTimeEntity> WorkTimeEntities { get; set; } 
-        
+
+        public virtual TeamEntity TeamEntities { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<WorkTimeEntity> WorkTimeEntities { get; set; }
+
 
     }
 }

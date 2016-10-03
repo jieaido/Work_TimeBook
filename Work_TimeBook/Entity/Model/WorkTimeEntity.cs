@@ -10,51 +10,16 @@ namespace Entity.Model
 {
     public class WorkTimeEntity
     {
-        public WorkTimeEntity ()
-        {
-            CreateTime=DateTime.Now;
-            
-        }
         [Key]
         public int WorkTimeId { get; set; }
-        /// <summary>
-        /// 工作开始时间    
-        /// </summary>
-        [DataType(DataType.DateTime)]
-        public DateTime WtStartDateTime { get; set; }
-        /// <summary>
-        /// 结束时间
-        /// </summary>
-        [DataType(DataType.DateTime)]
-        public DateTime WtOverDateTime { get; set; }
-        /// <summary>
-        /// 班组
-        /// </summary>
-        public int TeamEntityId { get; set; }
-        public virtual  TeamEntity  TeamEntity   { get; set; }
-        /// <summary>
-        /// 站点
-        /// </summary>
-        [ForeignKey("StationEntity")]
-        public int StationEntityId { get; set; }
-        public virtual StationEntity StationEntity { get; set; }
-
-        /// <summary>
-        /// 工时数
-        /// </summary>
+        public System.DateTime WtStartDateTime { get; set; }
+        public System.DateTime WtOverDateTime { get; set; }
         public float WtValue { get; set; }
-        /// <summary>
-        /// 工作人员
-        /// </summary>
-
-        public IEnumerable<UserInfoEntity> UserInfoEntities { get; set; }
-        /// <summary>
-        /// 工作内容
-        /// </summary>
         public string WtContent { get; set; }
-
         public string Remarks { get; set; }
-        public DateTime CreateTime { get; set; }    
+        public System.DateTime CreateTime { get; set; }
+
+        public virtual StationEntity StationEntities { get; set; }
 
 
 

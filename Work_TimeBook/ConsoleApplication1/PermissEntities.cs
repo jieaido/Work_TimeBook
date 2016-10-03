@@ -7,25 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Entity
+namespace ConsoleApplication1
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class station
+    public partial class PermissEntities
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public station()
+        public PermissEntities()
         {
-            this.worktime = new HashSet<worktime>();
+            this.RoleEntities = new HashSet<RoleEntities>();
         }
     
-        public int Id { get; set; }
-        public string name { get; set; }
-        public int teamId { get; set; }
+        public int PermissEntityId { get; set; }
+        public string PermissName { get; set; }
+        public Nullable<int> FunctionEntity_FuntionEntityId { get; set; }
+        public Nullable<int> MenuEntity_MenuEntityId { get; set; }
     
+        public virtual FunctionEntities FunctionEntities { get; set; }
+        public virtual MenuEntities MenuEntities { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<worktime> worktime { get; set; }
-        public virtual team team { get; set; }
+        public virtual ICollection<RoleEntities> RoleEntities { get; set; }
     }
 }

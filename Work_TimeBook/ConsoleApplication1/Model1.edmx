@@ -1,0 +1,548 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model1.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Model1StoreContainer">
+    <EntitySet Name="FunctionEntities" EntityType="Model1.Store.FunctionEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MenuEntities" EntityType="Model1.Store.MenuEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PermissEntities" EntityType="Model1.Store.PermissEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleEntities" EntityType="Model1.Store.RoleEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StationEntities" EntityType="Model1.Store.StationEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TeamEntities" EntityType="Model1.Store.TeamEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInfoEntities" EntityType="Model1.Store.UserInfoEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="WorkTimeEntities" EntityType="Model1.Store.WorkTimeEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RoleEntityPermissEntities" EntityType="Model1.Store.RoleEntityPermissEntities" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UserInfoEntitiesTeamEntities" EntityType="Model1.Store.UserInfoEntitiesTeamEntities" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId" Association="Model1.Store.FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId">
+      <End Role="FunctionEntities" EntitySet="FunctionEntities" />
+      <End Role="PermissEntities" EntitySet="PermissEntities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId" Association="Model1.Store.FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId">
+      <End Role="MenuEntities" EntitySet="MenuEntities" />
+      <End Role="PermissEntities" EntitySet="PermissEntities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleEntityPermissEntities_PermissEntities" Association="Model1.Store.FK_RoleEntityPermissEntities_PermissEntities">
+      <End Role="PermissEntities" EntitySet="PermissEntities" />
+      <End Role="RoleEntityPermissEntities" EntitySet="RoleEntityPermissEntities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RoleEntityPermissEntities_RoleEntities" Association="Model1.Store.FK_RoleEntityPermissEntities_RoleEntities">
+      <End Role="RoleEntities" EntitySet="RoleEntities" />
+      <End Role="RoleEntityPermissEntities" EntitySet="RoleEntityPermissEntities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInfoEntitiesTeamEntities_UserInfoEntities" Association="Model1.Store.FK_UserInfoEntitiesTeamEntities_UserInfoEntities">
+      <End Role="UserInfoEntities" EntitySet="UserInfoEntities" />
+      <End Role="UserInfoEntitiesTeamEntities" EntitySet="UserInfoEntitiesTeamEntities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserInfoEntitiesTeamEntities_TeamEntities" Association="Model1.Store.FK_UserInfoEntitiesTeamEntities_TeamEntities">
+      <End Role="TeamEntities" EntitySet="TeamEntities" />
+      <End Role="UserInfoEntitiesTeamEntities" EntitySet="UserInfoEntitiesTeamEntities" />
+    </AssociationSet>
+    <AssociationSet Name="StationEntitiesTeamEntities" Association="Model1.Store.StationEntitiesTeamEntities">
+      <End Role="StationEntities" EntitySet="StationEntities" />
+      <End Role="TeamEntities" EntitySet="TeamEntities" />
+    </AssociationSet>
+    <AssociationSet Name="WorkTimeEntitiesStationEntities" Association="Model1.Store.WorkTimeEntitiesStationEntities">
+      <End Role="WorkTimeEntities" EntitySet="WorkTimeEntities" />
+      <End Role="StationEntities" EntitySet="StationEntities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="FunctionEntities">
+    <Key>
+      <PropertyRef Name="FuntionEntityId" />
+    </Key>
+    <Property Name="FuntionEntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FuntionName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ControllerName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ActionName" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="MenuEntities">
+    <Key>
+      <PropertyRef Name="MenuEntityId" />
+    </Key>
+    <Property Name="MenuEntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ParentMenuId" Type="int" Nullable="false" />
+    <Property Name="MenuName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="MenuDisplayName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ControllerName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="ActionName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="SortId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PermissEntities">
+    <Key>
+      <PropertyRef Name="PermissEntityId" />
+    </Key>
+    <Property Name="PermissEntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermissName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="FunctionEntity_FuntionEntityId" Type="int" Nullable="true" />
+    <Property Name="MenuEntity_MenuEntityId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RoleEntities">
+    <Key>
+      <PropertyRef Name="RoleEntityId" />
+    </Key>
+    <Property Name="RoleEntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="StationEntities">
+    <Key>
+      <PropertyRef Name="StationId" />
+    </Key>
+    <Property Name="StationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StationName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Derscpion" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="TeamEntities_TeamEntityId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TeamEntities">
+    <Key>
+      <PropertyRef Name="TeamEntityId" />
+    </Key>
+    <Property Name="TeamEntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="UserInfoEntities">
+    <Key>
+      <PropertyRef Name="UserInfoEntityId" />
+    </Key>
+    <Property Name="UserInfoEntityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoginName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LoginPwd" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RealName" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="WorkTimeEntities">
+    <Key>
+      <PropertyRef Name="WorkTimeId" />
+    </Key>
+    <Property Name="WorkTimeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WtStartDateTime" Type="datetime" Nullable="false" />
+    <Property Name="WtOverDateTime" Type="datetime" Nullable="false" />
+    <Property Name="WtValue" Type="real" Nullable="false" />
+    <Property Name="WtContent" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="Remarks" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="CreateTime" Type="datetime" Nullable="false" />
+    <Property Name="StationEntities_StationId" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="RoleEntityPermissEntities">
+    <Key>
+      <PropertyRef Name="PermissEntities_PermissEntityId" />
+      <PropertyRef Name="RoleEntities_RoleEntityId" />
+    </Key>
+    <Property Name="PermissEntities_PermissEntityId" Type="int" Nullable="false" />
+    <Property Name="RoleEntities_RoleEntityId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UserInfoEntitiesTeamEntities">
+    <Key>
+      <PropertyRef Name="UserInfoEntities_UserInfoEntityId" />
+      <PropertyRef Name="TeamEntities_TeamEntityId" />
+    </Key>
+    <Property Name="UserInfoEntities_UserInfoEntityId" Type="int" Nullable="false" />
+    <Property Name="TeamEntities_TeamEntityId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId">
+    <End Role="FunctionEntities" Type="Model1.Store.FunctionEntities" Multiplicity="0..1" />
+    <End Role="PermissEntities" Type="Model1.Store.PermissEntities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FunctionEntities">
+        <PropertyRef Name="FuntionEntityId" />
+      </Principal>
+      <Dependent Role="PermissEntities">
+        <PropertyRef Name="FunctionEntity_FuntionEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId">
+    <End Role="MenuEntities" Type="Model1.Store.MenuEntities" Multiplicity="0..1" />
+    <End Role="PermissEntities" Type="Model1.Store.PermissEntities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuEntities">
+        <PropertyRef Name="MenuEntityId" />
+      </Principal>
+      <Dependent Role="PermissEntities">
+        <PropertyRef Name="MenuEntity_MenuEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StationEntitiesTeamEntities">
+    <End Role="StationEntities" Type="Model1.Store.StationEntities" Multiplicity="*" />
+    <End Role="TeamEntities" Type="Model1.Store.TeamEntities" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="TeamEntities">
+        <PropertyRef Name="TeamEntityId" />
+      </Principal>
+      <Dependent Role="StationEntities">
+        <PropertyRef Name="TeamEntities_TeamEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="WorkTimeEntitiesStationEntities">
+    <End Role="WorkTimeEntities" Type="Model1.Store.WorkTimeEntities" Multiplicity="*" />
+    <End Role="StationEntities" Type="Model1.Store.StationEntities" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="StationEntities">
+        <PropertyRef Name="StationId" />
+      </Principal>
+      <Dependent Role="WorkTimeEntities">
+        <PropertyRef Name="StationEntities_StationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleEntityPermissEntities_PermissEntities">
+    <End Role="PermissEntities" Type="Model1.Store.PermissEntities" Multiplicity="1" />
+    <End Role="RoleEntityPermissEntities" Type="Model1.Store.RoleEntityPermissEntities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PermissEntities">
+        <PropertyRef Name="PermissEntityId" />
+      </Principal>
+      <Dependent Role="RoleEntityPermissEntities">
+        <PropertyRef Name="PermissEntities_PermissEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RoleEntityPermissEntities_RoleEntities">
+    <End Role="RoleEntityPermissEntities" Type="Model1.Store.RoleEntityPermissEntities" Multiplicity="*" />
+    <End Role="RoleEntities" Type="Model1.Store.RoleEntities" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="RoleEntities">
+        <PropertyRef Name="RoleEntityId" />
+      </Principal>
+      <Dependent Role="RoleEntityPermissEntities">
+        <PropertyRef Name="RoleEntities_RoleEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfoEntitiesTeamEntities_UserInfoEntities">
+    <End Role="UserInfoEntities" Type="Model1.Store.UserInfoEntities" Multiplicity="1" />
+    <End Role="UserInfoEntitiesTeamEntities" Type="Model1.Store.UserInfoEntitiesTeamEntities" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserInfoEntities">
+        <PropertyRef Name="UserInfoEntityId" />
+      </Principal>
+      <Dependent Role="UserInfoEntitiesTeamEntities">
+        <PropertyRef Name="UserInfoEntities_UserInfoEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserInfoEntitiesTeamEntities_TeamEntities">
+    <End Role="UserInfoEntitiesTeamEntities" Type="Model1.Store.UserInfoEntitiesTeamEntities" Multiplicity="*" />
+    <End Role="TeamEntities" Type="Model1.Store.TeamEntities" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="TeamEntities">
+        <PropertyRef Name="TeamEntityId" />
+      </Principal>
+      <Dependent Role="UserInfoEntitiesTeamEntities">
+        <PropertyRef Name="TeamEntities_TeamEntityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="Model1Container" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FunctionEntities" EntityType="Model1.FunctionEntities" />
+          <EntitySet Name="MenuEntities" EntityType="Model1.MenuEntities" />
+          <EntitySet Name="PermissEntities" EntityType="Model1.PermissEntities" />
+          <EntitySet Name="RoleEntities" EntityType="Model1.RoleEntities" />
+          <EntitySet Name="StationEntities" EntityType="Model1.StationEntity" />
+          <EntitySet Name="TeamEntities" EntityType="Model1.TeamEntity" />
+          <EntitySet Name="UserInfoEntities" EntityType="Model1.UserInfoEntity" />
+          <EntitySet Name="WorkTimeEntities" EntityType="Model1.WorkTimeEntity" />
+          <AssociationSet Name="FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId" Association="Model1.FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId">
+            <End Role="FunctionEntities" EntitySet="FunctionEntities" />
+            <End Role="PermissEntities" EntitySet="PermissEntities" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId" Association="Model1.FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId">
+            <End Role="MenuEntities" EntitySet="MenuEntities" />
+            <End Role="PermissEntities" EntitySet="PermissEntities" />
+          </AssociationSet>
+          <AssociationSet Name="RoleEntityPermissEntities" Association="Model1.RoleEntityPermissEntities">
+            <End Role="PermissEntities" EntitySet="PermissEntities" />
+            <End Role="RoleEntities" EntitySet="RoleEntities" />
+          </AssociationSet>
+          <AssociationSet Name="UserInfoEntitiesTeamEntities" Association="Model1.UserInfoEntitiesTeamEntities">
+            <End Role="UserInfoEntities" EntitySet="UserInfoEntities" />
+            <End Role="TeamEntities" EntitySet="TeamEntities" />
+          </AssociationSet>
+          <AssociationSet Name="StationEntitiesTeamEntities" Association="Model1.StationEntitiesTeamEntities">
+            <End Role="StationEntities" EntitySet="StationEntities" />
+            <End Role="TeamEntities" EntitySet="TeamEntities" />
+          </AssociationSet>
+          <AssociationSet Name="WorkTimeEntitiesStationEntities" Association="Model1.WorkTimeEntitiesStationEntities">
+            <End Role="WorkTimeEntities" EntitySet="WorkTimeEntities" />
+            <End Role="StationEntities" EntitySet="StationEntities" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="FunctionEntities">
+          <Key>
+            <PropertyRef Name="FuntionEntityId" />
+          </Key>
+          <Property Name="FuntionEntityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FuntionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PermissEntities" Relationship="Model1.FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId" FromRole="FunctionEntities" ToRole="PermissEntities" />
+        </EntityType>
+        <EntityType Name="MenuEntities">
+          <Key>
+            <PropertyRef Name="MenuEntityId" />
+          </Key>
+          <Property Name="MenuEntityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ParentMenuId" Type="Int32" Nullable="false" />
+          <Property Name="MenuName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MenuDisplayName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ControllerName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ActionName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SortId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PermissEntities" Relationship="Model1.FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId" FromRole="MenuEntities" ToRole="PermissEntities" />
+        </EntityType>
+        <EntityType Name="PermissEntities">
+          <Key>
+            <PropertyRef Name="PermissEntityId" />
+          </Key>
+          <Property Name="PermissEntityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PermissName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FunctionEntity_FuntionEntityId" Type="Int32" />
+          <Property Name="MenuEntity_MenuEntityId" Type="Int32" />
+          <NavigationProperty Name="FunctionEntities" Relationship="Model1.FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId" FromRole="PermissEntities" ToRole="FunctionEntities" />
+          <NavigationProperty Name="MenuEntities" Relationship="Model1.FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId" FromRole="PermissEntities" ToRole="MenuEntities" />
+          <NavigationProperty Name="RoleEntities" Relationship="Model1.RoleEntityPermissEntities" FromRole="PermissEntities" ToRole="RoleEntities" />
+        </EntityType>
+        <EntityType Name="RoleEntities">
+          <Key>
+            <PropertyRef Name="RoleEntityId" />
+          </Key>
+          <Property Name="RoleEntityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PermissEntities" Relationship="Model1.RoleEntityPermissEntities" FromRole="RoleEntities" ToRole="PermissEntities" />
+        </EntityType>
+        <EntityType Name="StationEntity">
+          <Key>
+            <PropertyRef Name="StationId" />
+          </Key>
+          <Property Name="StationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Derscpion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TeamEntities" Relationship="Model1.StationEntitiesTeamEntities" FromRole="StationEntities" ToRole="TeamEntities" />
+          <NavigationProperty Name="WorkTimeEntities" Relationship="Model1.WorkTimeEntitiesStationEntities" FromRole="StationEntities" ToRole="WorkTimeEntities" />
+        </EntityType>
+        <EntityType Name="TeamEntity">
+          <Key>
+            <PropertyRef Name="TeamEntityId" />
+          </Key>
+          <Property Name="TeamEntityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeamName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserInfoEntities" Relationship="Model1.UserInfoEntitiesTeamEntities" FromRole="TeamEntities" ToRole="UserInfoEntities" />
+          <NavigationProperty Name="StationEntities" Relationship="Model1.StationEntitiesTeamEntities" FromRole="TeamEntities" ToRole="StationEntities" />
+        </EntityType>
+        <EntityType Name="UserInfoEntity">
+          <Key>
+            <PropertyRef Name="UserInfoEntityId" />
+          </Key>
+          <Property Name="UserInfoEntityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LoginPwd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RealName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TeamEntities" Relationship="Model1.UserInfoEntitiesTeamEntities" FromRole="UserInfoEntities" ToRole="TeamEntities" />
+        </EntityType>
+        <EntityType Name="WorkTimeEntity">
+          <Key>
+            <PropertyRef Name="WorkTimeId" />
+          </Key>
+          <Property Name="WorkTimeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WtStartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WtOverDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WtValue" Type="Single" Nullable="false" />
+          <Property Name="WtContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="StationEntities" Relationship="Model1.WorkTimeEntitiesStationEntities" FromRole="WorkTimeEntities" ToRole="StationEntities" />
+        </EntityType>
+        <Association Name="FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId">
+          <End Type="Model1.FunctionEntities" Role="FunctionEntities" Multiplicity="0..1" />
+          <End Type="Model1.PermissEntities" Role="PermissEntities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FunctionEntities">
+              <PropertyRef Name="FuntionEntityId" />
+            </Principal>
+            <Dependent Role="PermissEntities">
+              <PropertyRef Name="FunctionEntity_FuntionEntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId">
+          <End Type="Model1.MenuEntities" Role="MenuEntities" Multiplicity="0..1" />
+          <End Type="Model1.PermissEntities" Role="PermissEntities" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuEntities">
+              <PropertyRef Name="MenuEntityId" />
+            </Principal>
+            <Dependent Role="PermissEntities">
+              <PropertyRef Name="MenuEntity_MenuEntityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RoleEntityPermissEntities">
+          <End Type="Model1.PermissEntities" Role="PermissEntities" Multiplicity="*" />
+          <End Type="Model1.RoleEntities" Role="RoleEntities" Multiplicity="*" />
+        </Association>
+        <Association Name="UserInfoEntitiesTeamEntities">
+          <End Type="Model1.UserInfoEntity" Role="UserInfoEntities" Multiplicity="*" />
+          <End Type="Model1.TeamEntity" Role="TeamEntities" Multiplicity="*" />
+        </Association>
+        <Association Name="StationEntitiesTeamEntities">
+          <End Type="Model1.StationEntity" Role="StationEntities" Multiplicity="*" />
+          <End Type="Model1.TeamEntity" Role="TeamEntities" Multiplicity="0..1" />
+        </Association>
+        <Association Name="WorkTimeEntitiesStationEntities">
+          <End Type="Model1.WorkTimeEntity" Role="WorkTimeEntities" Multiplicity="*" />
+          <End Type="Model1.StationEntity" Role="StationEntities" Multiplicity="0..1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Model1StoreContainer" CdmEntityContainer="Model1Container">
+    <EntitySetMapping Name="FunctionEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.FunctionEntities)">
+        <MappingFragment StoreEntitySet="FunctionEntities">
+          <ScalarProperty Name="FuntionEntityId" ColumnName="FuntionEntityId" />
+          <ScalarProperty Name="FuntionName" ColumnName="FuntionName" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.MenuEntities)">
+        <MappingFragment StoreEntitySet="MenuEntities">
+          <ScalarProperty Name="MenuEntityId" ColumnName="MenuEntityId" />
+          <ScalarProperty Name="ParentMenuId" ColumnName="ParentMenuId" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="MenuDisplayName" ColumnName="MenuDisplayName" />
+          <ScalarProperty Name="ControllerName" ColumnName="ControllerName" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="SortId" ColumnName="SortId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermissEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.PermissEntities)">
+        <MappingFragment StoreEntitySet="PermissEntities">
+          <ScalarProperty Name="PermissEntityId" ColumnName="PermissEntityId" />
+          <ScalarProperty Name="PermissName" ColumnName="PermissName" />
+          <ScalarProperty Name="FunctionEntity_FuntionEntityId" ColumnName="FunctionEntity_FuntionEntityId" />
+          <ScalarProperty Name="MenuEntity_MenuEntityId" ColumnName="MenuEntity_MenuEntityId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RoleEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.RoleEntities)">
+        <MappingFragment StoreEntitySet="RoleEntities">
+          <ScalarProperty Name="RoleEntityId" ColumnName="RoleEntityId" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StationEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.StationEntity)">
+        <MappingFragment StoreEntitySet="StationEntities">
+          <ScalarProperty Name="StationId" ColumnName="StationId" />
+          <ScalarProperty Name="StationName" ColumnName="StationName" />
+          <ScalarProperty Name="Derscpion" ColumnName="Derscpion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TeamEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.TeamEntity)">
+        <MappingFragment StoreEntitySet="TeamEntities">
+          <ScalarProperty Name="TeamEntityId" ColumnName="TeamEntityId" />
+          <ScalarProperty Name="TeamName" ColumnName="TeamName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserInfoEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.UserInfoEntity)">
+        <MappingFragment StoreEntitySet="UserInfoEntities">
+          <ScalarProperty Name="UserInfoEntityId" ColumnName="UserInfoEntityId" />
+          <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+          <ScalarProperty Name="LoginPwd" ColumnName="LoginPwd" />
+          <ScalarProperty Name="RealName" ColumnName="RealName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkTimeEntities">
+      <EntityTypeMapping TypeName="IsTypeOf(Model1.WorkTimeEntity)">
+        <MappingFragment StoreEntitySet="WorkTimeEntities">
+          <ScalarProperty Name="WorkTimeId" ColumnName="WorkTimeId" />
+          <ScalarProperty Name="WtStartDateTime" ColumnName="WtStartDateTime" />
+          <ScalarProperty Name="WtOverDateTime" ColumnName="WtOverDateTime" />
+          <ScalarProperty Name="WtValue" ColumnName="WtValue" />
+          <ScalarProperty Name="WtContent" ColumnName="WtContent" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="RoleEntityPermissEntities" TypeName="Model1.RoleEntityPermissEntities" StoreEntitySet="RoleEntityPermissEntities">
+      <EndProperty Name="PermissEntities">
+        <ScalarProperty Name="PermissEntityId" ColumnName="PermissEntities_PermissEntityId" />
+      </EndProperty>
+      <EndProperty Name="RoleEntities">
+        <ScalarProperty Name="RoleEntityId" ColumnName="RoleEntities_RoleEntityId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserInfoEntitiesTeamEntities" TypeName="Model1.UserInfoEntitiesTeamEntities" StoreEntitySet="UserInfoEntitiesTeamEntities">
+      <EndProperty Name="UserInfoEntities">
+        <ScalarProperty Name="UserInfoEntityId" ColumnName="UserInfoEntities_UserInfoEntityId" />
+      </EndProperty>
+      <EndProperty Name="TeamEntities">
+        <ScalarProperty Name="TeamEntityId" ColumnName="TeamEntities_TeamEntityId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="StationEntitiesTeamEntities" TypeName="Model1.StationEntitiesTeamEntities" StoreEntitySet="StationEntities">
+      <EndProperty Name="TeamEntities">
+        <ScalarProperty Name="TeamEntityId" ColumnName="TeamEntities_TeamEntityId" />
+      </EndProperty>
+      <EndProperty Name="StationEntities">
+        <ScalarProperty Name="StationId" ColumnName="StationId" />
+      </EndProperty>
+      <Condition ColumnName="TeamEntities_TeamEntityId" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="WorkTimeEntitiesStationEntities" TypeName="Model1.WorkTimeEntitiesStationEntities" StoreEntitySet="WorkTimeEntities">
+      <EndProperty Name="StationEntities">
+        <ScalarProperty Name="StationId" ColumnName="StationEntities_StationId" />
+      </EndProperty>
+      <EndProperty Name="WorkTimeEntities">
+        <ScalarProperty Name="WorkTimeId" ColumnName="WorkTimeId" />
+      </EndProperty>
+      <Condition ColumnName="StationEntities_StationId" IsNull="false" />
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
