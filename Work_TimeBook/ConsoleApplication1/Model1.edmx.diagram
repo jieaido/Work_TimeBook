@@ -9,16 +9,16 @@
         <EntityTypeShape EntityType="Model1.MenuEntities" Width="1.5" PointX="1.5" PointY="21.5" />
         <EntityTypeShape EntityType="Model1.PermissEntities" Width="1.5" PointX="1.5" PointY="15.25" />
         <EntityTypeShape EntityType="Model1.RoleEntities" Width="1.5" PointX="0.75" PointY="10.5" />
-        <EntityTypeShape EntityType="Model1.StationEntity" Width="1.5" PointX="4.625" PointY="4.875" />
+        <EntityTypeShape EntityType="Model1.StationEntity" Width="3.25" PointX="4.375" PointY="4.125" />
         <EntityTypeShape EntityType="Model1.TeamEntity" Width="1.5" PointX="0.75" PointY="5.25" />
-        <EntityTypeShape EntityType="Model1.UserInfoEntity" Width="2.75" PointX="3" PointY="1.125" />
-        <EntityTypeShape EntityType="Model1.WorkTimeEntity" Width="3" PointX="7.25" PointY="4.25" />
+        <EntityTypeShape EntityType="Model1.UserInfoEntity" Width="2.75" PointX="4.375" PointY="1.25" />
+        <EntityTypeShape EntityType="Model1.WorkTimeEntity" Width="3" PointX="9.375" PointY="4.25" />
         <AssociationConnector Association="Model1.FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId" />
         <AssociationConnector Association="Model1.FK_dbo_PermissEntities_dbo_MenuEntities_MenuEntity_MenuEntityId" />
         <AssociationConnector Association="Model1.RoleEntityPermissEntities" />
-        <AssociationConnector Association="Model1.UserInfoEntitiesTeamEntities" />
-        <AssociationConnector Association="Model1.StationEntitiesTeamEntities" />
-        <AssociationConnector Association="Model1.WorkTimeEntitiesStationEntities" />
+        <AssociationConnector Association="Model1.TeamEntityStationEntity" />
+        <AssociationConnector Association="Model1.WorkTimeEntityStationEntity" />
+        <AssociationConnector Association="Model1.WorkTimeEntityStationEntity1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

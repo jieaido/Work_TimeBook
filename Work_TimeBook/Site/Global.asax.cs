@@ -6,8 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using AutoMapper;
 using Entity;
 using Site.DI;
+using Site.Map;
 
 namespace Site
 {
@@ -16,7 +18,12 @@ namespace Site
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+
+
             DependencyResolver.SetResolver(new NinjectDependency());
+
+             Mapper.Initialize(EntityMapper.RegEntityMapper);
+
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

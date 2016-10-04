@@ -14,19 +14,10 @@ namespace ConsoleApplication1
     
     public partial class UserInfoEntity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UserInfoEntity()
-        {
-            this.TeamEntities = new HashSet<TeamEntity>();
-        }
-    
         public int UserInfoEntityId { get; set; }
         public string LoginName { get; set; }
         public string LoginPwd { get; set; }
         public string RealName { get; set; }
         public string Description { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TeamEntity> TeamEntities { get; set; }
     }
 }

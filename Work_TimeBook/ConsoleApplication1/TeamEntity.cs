@@ -14,19 +14,7 @@ namespace ConsoleApplication1
     
     public partial class TeamEntity
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TeamEntity()
-        {
-            this.UserInfoEntities = new HashSet<UserInfoEntity>();
-            this.StationEntities = new HashSet<StationEntity>();
-        }
-    
         public int TeamEntityId { get; set; }
         public string TeamName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserInfoEntity> UserInfoEntities { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<StationEntity> StationEntities { get; set; }
     }
 }

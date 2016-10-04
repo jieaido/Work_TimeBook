@@ -21,7 +21,8 @@ namespace ConsoleApplication1
         public string WtContent { get; set; }
         public string Remarks { get; set; }
         public System.DateTime CreateTime { get; set; }
+        public int StationEntityStationId { get; set; }
     
-        public virtual StationEntity StationEntities { get; set; }
+        public virtual StationEntity StationEntity { get; set; }
     }
 }

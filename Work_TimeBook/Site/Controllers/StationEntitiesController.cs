@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Entity;
 using Entity.InterFace;
 using Entity.Model;
+using Site.Map;
 
 namespace Site.Controllers
 {
@@ -88,12 +89,15 @@ namespace Site.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             StationEntity stationEntity = _iStationEntityRepos.FindById(id);
+            
             if (stationEntity == null)
             {
                 return HttpNotFound();
             }
-        GetTeamValueAndSetViewBag();
-            return View(stationEntity);
+            var result = EntityMapper.GetStationViewModelByEntity(stationEntity);
+            result.TeamEntityId = stationEntity.TeamEntities.TeamEntityId;
+            GetTeamValueAndSetViewBag();
+            return View(result);
         }
 
         // POST: StationEntities/Edit/5

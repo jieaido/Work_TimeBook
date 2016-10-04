@@ -15,7 +15,6 @@
     <EntitySet Name="UserInfoEntities" EntityType="Model1.Store.UserInfoEntities" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="WorkTimeEntities" EntityType="Model1.Store.WorkTimeEntities" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="RoleEntityPermissEntities" EntityType="Model1.Store.RoleEntityPermissEntities" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="UserInfoEntitiesTeamEntities" EntityType="Model1.Store.UserInfoEntitiesTeamEntities" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId" Association="Model1.Store.FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId">
       <End Role="FunctionEntities" EntitySet="FunctionEntities" />
       <End Role="PermissEntities" EntitySet="PermissEntities" />
@@ -31,14 +30,6 @@
     <AssociationSet Name="FK_RoleEntityPermissEntities_RoleEntities" Association="Model1.Store.FK_RoleEntityPermissEntities_RoleEntities">
       <End Role="RoleEntities" EntitySet="RoleEntities" />
       <End Role="RoleEntityPermissEntities" EntitySet="RoleEntityPermissEntities" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserInfoEntitiesTeamEntities_UserInfoEntities" Association="Model1.Store.FK_UserInfoEntitiesTeamEntities_UserInfoEntities">
-      <End Role="UserInfoEntities" EntitySet="UserInfoEntities" />
-      <End Role="UserInfoEntitiesTeamEntities" EntitySet="UserInfoEntitiesTeamEntities" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserInfoEntitiesTeamEntities_TeamEntities" Association="Model1.Store.FK_UserInfoEntitiesTeamEntities_TeamEntities">
-      <End Role="TeamEntities" EntitySet="TeamEntities" />
-      <End Role="UserInfoEntitiesTeamEntities" EntitySet="UserInfoEntitiesTeamEntities" />
     </AssociationSet>
     <AssociationSet Name="StationEntitiesTeamEntities" Association="Model1.Store.StationEntitiesTeamEntities">
       <End Role="StationEntities" EntitySet="StationEntities" />
@@ -133,14 +124,6 @@
     <Property Name="PermissEntities_PermissEntityId" Type="int" Nullable="false" />
     <Property Name="RoleEntities_RoleEntityId" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="UserInfoEntitiesTeamEntities">
-    <Key>
-      <PropertyRef Name="UserInfoEntities_UserInfoEntityId" />
-      <PropertyRef Name="TeamEntities_TeamEntityId" />
-    </Key>
-    <Property Name="UserInfoEntities_UserInfoEntityId" Type="int" Nullable="false" />
-    <Property Name="TeamEntities_TeamEntityId" Type="int" Nullable="false" />
-  </EntityType>
   <Association Name="FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId">
     <End Role="FunctionEntities" Type="Model1.Store.FunctionEntities" Multiplicity="0..1" />
     <End Role="PermissEntities" Type="Model1.Store.PermissEntities" Multiplicity="*" />
@@ -213,31 +196,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserInfoEntitiesTeamEntities_UserInfoEntities">
-    <End Role="UserInfoEntities" Type="Model1.Store.UserInfoEntities" Multiplicity="1" />
-    <End Role="UserInfoEntitiesTeamEntities" Type="Model1.Store.UserInfoEntitiesTeamEntities" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="UserInfoEntities">
-        <PropertyRef Name="UserInfoEntityId" />
-      </Principal>
-      <Dependent Role="UserInfoEntitiesTeamEntities">
-        <PropertyRef Name="UserInfoEntities_UserInfoEntityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserInfoEntitiesTeamEntities_TeamEntities">
-    <End Role="UserInfoEntitiesTeamEntities" Type="Model1.Store.UserInfoEntitiesTeamEntities" Multiplicity="*" />
-    <End Role="TeamEntities" Type="Model1.Store.TeamEntities" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="TeamEntities">
-        <PropertyRef Name="TeamEntityId" />
-      </Principal>
-      <Dependent Role="UserInfoEntitiesTeamEntities">
-        <PropertyRef Name="TeamEntities_TeamEntityId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+  </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Model1" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
@@ -262,17 +221,17 @@
             <End Role="PermissEntities" EntitySet="PermissEntities" />
             <End Role="RoleEntities" EntitySet="RoleEntities" />
           </AssociationSet>
-          <AssociationSet Name="UserInfoEntitiesTeamEntities" Association="Model1.UserInfoEntitiesTeamEntities">
-            <End Role="UserInfoEntities" EntitySet="UserInfoEntities" />
-            <End Role="TeamEntities" EntitySet="TeamEntities" />
+          <AssociationSet Name="TeamEntityStationEntity" Association="Model1.TeamEntityStationEntity">
+            <End Role="TeamEntity" EntitySet="TeamEntities" />
+            <End Role="StationEntity" EntitySet="StationEntities" />
           </AssociationSet>
-          <AssociationSet Name="StationEntitiesTeamEntities" Association="Model1.StationEntitiesTeamEntities">
-            <End Role="StationEntities" EntitySet="StationEntities" />
-            <End Role="TeamEntities" EntitySet="TeamEntities" />
+          <AssociationSet Name="WorkTimeEntityStationEntity" Association="Model1.WorkTimeEntityStationEntity">
+            <End Role="WorkTimeEntity" EntitySet="WorkTimeEntities" />
+            <End Role="StationEntity" EntitySet="StationEntities" />
           </AssociationSet>
-          <AssociationSet Name="WorkTimeEntitiesStationEntities" Association="Model1.WorkTimeEntitiesStationEntities">
-            <End Role="WorkTimeEntities" EntitySet="WorkTimeEntities" />
-            <End Role="StationEntities" EntitySet="StationEntities" />
+          <AssociationSet Name="WorkTimeEntityStationEntity1" Association="Model1.WorkTimeEntityStationEntity1">
+            <End Role="WorkTimeEntity" EntitySet="WorkTimeEntities" />
+            <End Role="StationEntity" EntitySet="StationEntities" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="FunctionEntities">
@@ -325,8 +284,9 @@
           <Property Name="StationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StationName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Derscpion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TeamEntities" Relationship="Model1.StationEntitiesTeamEntities" FromRole="StationEntities" ToRole="TeamEntities" />
-          <NavigationProperty Name="WorkTimeEntities" Relationship="Model1.WorkTimeEntitiesStationEntities" FromRole="StationEntities" ToRole="WorkTimeEntities" />
+          <Property Name="TeamEntityTeamEntityId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="teams" Relationship="Model1.TeamEntityStationEntity" FromRole="StationEntity" ToRole="TeamEntity" />
+          <NavigationProperty Name="WorkTimeEntity" Relationship="Model1.WorkTimeEntityStationEntity1" FromRole="StationEntity" ToRole="WorkTimeEntity" />
         </EntityType>
         <EntityType Name="TeamEntity">
           <Key>
@@ -334,8 +294,6 @@
           </Key>
           <Property Name="TeamEntityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="TeamName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserInfoEntities" Relationship="Model1.UserInfoEntitiesTeamEntities" FromRole="TeamEntities" ToRole="UserInfoEntities" />
-          <NavigationProperty Name="StationEntities" Relationship="Model1.StationEntitiesTeamEntities" FromRole="TeamEntities" ToRole="StationEntities" />
         </EntityType>
         <EntityType Name="UserInfoEntity">
           <Key>
@@ -346,7 +304,6 @@
           <Property Name="LoginPwd" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="RealName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TeamEntities" Relationship="Model1.UserInfoEntitiesTeamEntities" FromRole="UserInfoEntities" ToRole="TeamEntities" />
         </EntityType>
         <EntityType Name="WorkTimeEntity">
           <Key>
@@ -359,7 +316,8 @@
           <Property Name="WtContent" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="StationEntities" Relationship="Model1.WorkTimeEntitiesStationEntities" FromRole="WorkTimeEntities" ToRole="StationEntities" />
+          <NavigationProperty Name="StationEntity" Relationship="Model1.WorkTimeEntityStationEntity1" FromRole="WorkTimeEntity" ToRole="StationEntity" />
+          <Property Name="StationEntityStationId" Type="Int32" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_PermissEntities_dbo_FunctionEntities_FunctionEntity_FuntionEntityId">
           <End Type="Model1.FunctionEntities" Role="FunctionEntities" Multiplicity="0..1" />
@@ -389,17 +347,35 @@
           <End Type="Model1.PermissEntities" Role="PermissEntities" Multiplicity="*" />
           <End Type="Model1.RoleEntities" Role="RoleEntities" Multiplicity="*" />
         </Association>
-        <Association Name="UserInfoEntitiesTeamEntities">
-          <End Type="Model1.UserInfoEntity" Role="UserInfoEntities" Multiplicity="*" />
-          <End Type="Model1.TeamEntity" Role="TeamEntities" Multiplicity="*" />
+        <Association Name="TeamEntityStationEntity">
+          <End Type="Model1.TeamEntity" Role="TeamEntity" Multiplicity="1" >
+          </End>
+          <End Type="Model1.StationEntity" Role="StationEntity" Multiplicity="*" >
+          </End>
+          <ReferentialConstraint>
+            <Principal Role="TeamEntity">
+              <PropertyRef Name="TeamEntityId" />
+            </Principal>
+            <Dependent Role="StationEntity">
+              <PropertyRef Name="TeamEntityTeamEntityId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
-        <Association Name="StationEntitiesTeamEntities">
-          <End Type="Model1.StationEntity" Role="StationEntities" Multiplicity="*" />
-          <End Type="Model1.TeamEntity" Role="TeamEntities" Multiplicity="0..1" />
+        <Association Name="WorkTimeEntityStationEntity">
+          <End Type="Model1.WorkTimeEntity" Role="WorkTimeEntity" Multiplicity="*" />
+          <End Type="Model1.StationEntity" Role="StationEntity" Multiplicity="1" />
         </Association>
-        <Association Name="WorkTimeEntitiesStationEntities">
-          <End Type="Model1.WorkTimeEntity" Role="WorkTimeEntities" Multiplicity="*" />
-          <End Type="Model1.StationEntity" Role="StationEntities" Multiplicity="0..1" />
+        <Association Name="WorkTimeEntityStationEntity1">
+          <End Type="Model1.WorkTimeEntity" Role="WorkTimeEntity" Multiplicity="*" />
+          <End Type="Model1.StationEntity" Role="StationEntity" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="StationEntity">
+              <PropertyRef Name="StationId" />
+            </Principal>
+            <Dependent Role="WorkTimeEntity">
+              <PropertyRef Name="StationEntityStationId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -496,32 +472,6 @@
       <EndProperty Name="RoleEntities">
         <ScalarProperty Name="RoleEntityId" ColumnName="RoleEntities_RoleEntityId" />
       </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="UserInfoEntitiesTeamEntities" TypeName="Model1.UserInfoEntitiesTeamEntities" StoreEntitySet="UserInfoEntitiesTeamEntities">
-      <EndProperty Name="UserInfoEntities">
-        <ScalarProperty Name="UserInfoEntityId" ColumnName="UserInfoEntities_UserInfoEntityId" />
-      </EndProperty>
-      <EndProperty Name="TeamEntities">
-        <ScalarProperty Name="TeamEntityId" ColumnName="TeamEntities_TeamEntityId" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="StationEntitiesTeamEntities" TypeName="Model1.StationEntitiesTeamEntities" StoreEntitySet="StationEntities">
-      <EndProperty Name="TeamEntities">
-        <ScalarProperty Name="TeamEntityId" ColumnName="TeamEntities_TeamEntityId" />
-      </EndProperty>
-      <EndProperty Name="StationEntities">
-        <ScalarProperty Name="StationId" ColumnName="StationId" />
-      </EndProperty>
-      <Condition ColumnName="TeamEntities_TeamEntityId" IsNull="false" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="WorkTimeEntitiesStationEntities" TypeName="Model1.WorkTimeEntitiesStationEntities" StoreEntitySet="WorkTimeEntities">
-      <EndProperty Name="StationEntities">
-        <ScalarProperty Name="StationId" ColumnName="StationEntities_StationId" />
-      </EndProperty>
-      <EndProperty Name="WorkTimeEntities">
-        <ScalarProperty Name="WorkTimeId" ColumnName="WorkTimeId" />
-      </EndProperty>
-      <Condition ColumnName="StationEntities_StationId" IsNull="false" />
     </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>

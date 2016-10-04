@@ -17,15 +17,16 @@ namespace ConsoleApplication1
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public StationEntity()
         {
-            this.WorkTimeEntities = new HashSet<WorkTimeEntity>();
+            this.WorkTimeEntity = new HashSet<WorkTimeEntity>();
         }
     
         public int StationId { get; set; }
         public string StationName { get; set; }
         public string Derscpion { get; set; }
+        public int TeamEntityTeamEntityId { get; set; }
     
-        public virtual TeamEntity TeamEntities { get; set; }
+        public virtual TeamEntity teams { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<WorkTimeEntity> WorkTimeEntities { get; set; }
+        public virtual ICollection<WorkTimeEntity> WorkTimeEntity { get; set; }
     }
 }
