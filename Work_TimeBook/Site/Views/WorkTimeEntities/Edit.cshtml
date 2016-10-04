@@ -1,9 +1,9 @@
-﻿@model Entity.Model.WorkTimeEntity
+﻿@model Site.Models.WorkTimeViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
-
+<link href="~/Content/smalot-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
@@ -17,10 +17,27 @@
         @Html.HiddenFor(model => model.WorkTimeId)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.WtDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.WtStartDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.WtDateTime, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.WtDateTime, "", new { @class = "text-danger" })
+                <input type="text" id="WtStartDateTime" name="WtStartDateTime" class="form-control"  value="@Model.WtStartDateTime" readonly="readonly"/>@*todo 必须加个value值一个*@
+                @*@Html.EditorFor(model => model.WtStartDateTime, new {htmlAttributes = new {@class = "form-control"}})*@
+                @Html.ValidationMessageFor(model => model.WtStartDateTime, "", new { @class = "text-danger" })  
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.WtOverDateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="datetime" id="WtOverDateTime" name="WtOverDateTime" class="form-control" value="@Model.WtOverDateTime" readonly="" />
+                @*@Html.EditorFor(model => model.WtOverDateTime, new {htmlAttributes = new {@class = "form-control"}})*@
+                @Html.ValidationMessageFor(model => model.WtOverDateTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StationEntityIds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*<input type="text"  id="WtDateTime" class="form-control"  />*@
+                @Html.DropDownListFor(model => model.StationEntityIds, Model.SelectStationid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.WtOverDateTime, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -67,3 +84,32 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+@section scripts
+{
+
+    <script src="~/Scripts/smalot-datetimepicker/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script type="text/javascript">
+        var mydate = new Date();
+        $('#WtStartDateTime').datetimepicker({
+            format: 'yyyy/mm/dd hh:ii:ss',
+            // todo 必须要这个格式才不会出现1988的问题，看来肯定是格式不对的问题，以后研究
+
+            todayBtn: true,
+            todayHighlight: true,
+            autoclose:true,
+            startDate: "@DateTime.Now.Date.ToShortDateString()",
+            language: "zh-CN"
+
+        });$('#WtOverDateTime').datetimepicker({
+            format: 'yyyy/mm/dd hh:ii:ss',
+
+            todayBtn: true,
+            todayHighlight: true,
+            autoclose:true,
+            startDate: "@DateTime.Now.Date.ToShortDateString()",
+            language: "zh-CN"
+
+        });
+    </script>
+}

@@ -47,7 +47,7 @@ namespace Site.Models
         /// 工作人员
         /// </summary>
 
-        public IEnumerable<UserInfoEntity> UserInfoEntities { get; set; }
+
         /// <summary>
         /// 工作内容
         /// </summary>

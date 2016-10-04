@@ -86,26 +86,26 @@
 {
 
     <script src="~/Scripts/smalot-datetimepicker/bootstrap-datetimepicker.js"></script>
-<script src="~/Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="~/Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
     <script type="text/javascript">
         var mydate = new Date();
         $('#WtStartDateTime').datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
+            format: 'yyyy/mm/dd hh:ii:ss',
            
             todayBtn: true,
             todayHighlight: true,
             autoclose:true,
             startDate: "@DateTime.Now.Date.ToShortDateString()",
-            language: "zh-CN",
+            language: "zh-CN"
 
         });$('#WtOverDateTime').datetimepicker({
-            format: 'yyyy-mm-dd hh:ii',
+            format: 'yyyy/mm/dd hh:ii:ss',
            
             todayBtn: true,
             todayHighlight: true,
             autoclose:true,
             startDate: "@DateTime.Now.Date.ToShortDateString()",
-            language: "zh-CN",
+            language: "zh-CN"
 
         });
     </script>

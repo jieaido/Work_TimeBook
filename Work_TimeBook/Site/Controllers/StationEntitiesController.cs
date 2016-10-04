@@ -7,10 +7,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Entity;
 using Entity.InterFace;
 using Entity.Model;
 using Site.Map;
+using Site.Models;
 
 namespace Site.Controllers
 {
@@ -94,7 +96,8 @@ namespace Site.Controllers
             {
                 return HttpNotFound();
             }
-            var result = EntityMapper.GetStationViewModelByEntity(stationEntity);
+          //  var result = EntityMapper.GetStationViewModelByEntity(stationEntity);
+            var result = EntityMapper.GetEntity<StationViewModel, StationEntity>(stationEntity);
             result.TeamEntityId = stationEntity.TeamEntities.TeamEntityId;
             GetTeamValueAndSetViewBag();
             return View(result);
@@ -105,30 +108,18 @@ namespace Site.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(StationEntity stationEntity)
+        public ActionResult Edit(StationViewModel model)
         {
             if (ModelState.IsValid)
             {
-                EFDbContext db=new EFDbContext();
-               // _iStationEntityRepos.SetModified(stationEntity);
-               // var id = stationEntity.TeamEntities.TeamEntityId;
-                //stationEntity.TeamEntities = null;
-                var ss3= db.Entry(stationEntity).State;
-                //stationEntity = db.StationEntities.Find(1);
-                //var ss5= db.Entry(db.StationEntities.Find(id)).State;
-                db.Entry(stationEntity).State=EntityState.Unchanged;
-                //db.Entry(stationEntity.TeamEntities).State = EntityState.Modified;
-                stationEntity.TeamEntities = db.Teams.Find(2);
-                var ss = db.Entry(stationEntity.TeamEntities).State;
-                
-               
-                var ss2= db.Entry(stationEntity.TeamEntities).State;
-                var ss4= db.Entry(stationEntity).State;
-                db.Entry(stationEntity).State=EntityState.Modified;
-                db.SaveChanges();
+                var result = _iStationEntityRepos.FindById(model.StationId);
+                Mapper.Map(model, result);
+                result.TeamEntities = _iTeamEntityRepos.FindById(model.TeamEntityId);
+                _iStationEntityRepos.SetModified(result);
+                _iStationEntityRepos.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(stationEntity);
+            return View(model);
         }
 
         // GET: StationEntities/Delete/5

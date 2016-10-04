@@ -6,9 +6,11 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Entity;
 using Entity.InterFace;
 using Entity.Model;
+using Site.Map;
 using Site.Models;
 
 namespace Site.Controllers
@@ -48,38 +50,46 @@ namespace Site.Controllers
             return View(workTimeEntity);
         }
 
-        // GET: WorkTimeEntities/Create
-        //public ActionResult Create()
-        //{
-        //   var re = _iStationEntityRepos.GetAllTeams();
-        //    var result= (from teamEntity in re
-        //        from stationEntity in teamEntity.StationEntity
-        //        select new SelectListItem()
-        //        {
-        //            Group = new SelectListGroup()
-        //            {
-        //                Name = teamEntity.TeamName
-        //            },
-        //            Text = stationEntity.StationName, Value = stationEntity.StationId.ToString()
-        //        }).ToList();
-        //    WorkTimeViewModel vm=new WorkTimeViewModel()
-        //    {
-        //        SelectStationid = result
-        //    };
-        //    return View(vm);
-        //    //foreach (var stationEntity in teamEntity.StationEntity)
-        //    //{
-        //    //    var ss=new  SelectListItem()
-        //    //    {
-        //    //        Group = new SelectListGroup()
-        //    //        {
-        //    //            Name = teamEntity.TeamName
-        //    //        },Text = stationEntity.StationName,
-        //    //        Value = stationEntity.StationId.ToString()
-        //    //    };
-        //    //    result.Add(ss);
-        //    //}
-        //}
+       // GET: WorkTimeEntities/Create
+        public ActionResult Create()
+        {
+            var result = GetSelectListItems();
+            WorkTimeViewModel vm = new WorkTimeViewModel()
+            {
+                SelectStationid = result
+            };
+            return View(vm);
+            //foreach (var stationEntity in teamEntity.StationEntity)
+            //{
+            //    var ss = new SelectListItem()
+            //    {
+            //        Group = new SelectListGroup()
+            //        {
+            //            Name = teamEntity.TeamName
+            //        },
+            //        Text = stationEntity.StationName,
+            //        Value = stationEntity.StationId.ToString()
+            //    };
+            //    result.Add(ss);
+            
+        }
+
+        private List<SelectListItem> GetSelectListItems()
+        {
+            var re = _iStationEntityRepos.GetAllTeams();
+            var result = (from teamEntity in re
+                from stationEntity in teamEntity.StationEntities
+                select new SelectListItem()
+                {
+                    Group = new SelectListGroup()
+                    {
+                        Name = teamEntity.TeamName
+                    },
+                    Text = stationEntity.StationName,
+                    Value = stationEntity.StationId.ToString()
+                }).ToList();
+            return result;
+        }
 
         // POST: WorkTimeEntities/Create
         // 为了防止“过多发布”攻击，请启用要绑定到的特定属性，有关 
@@ -92,19 +102,20 @@ namespace Site.Controllers
             {
               
             
-               WorkTimeEntity wt=new WorkTimeEntity()
-               {
-                    Remarks = model.Remarks,
-                   // StationEntityId = model.StationEntityIds,
-                   // StationEntity = _iStationEntityRepos.FindById(model.StationEntityIds),
-                   //TeamEntityId = _iStationEntityRepos.FindById(model.StationEntityIds).TeamEntityId,
-                   WtContent=model.WtContent,
-                   WtStartDateTime = model.WtStartDateTime,
-                   WtOverDateTime = model.WtOverDateTime,
-                   WtValue = model.WtValue
+               //WorkTimeEntity wt=new WorkTimeEntity()
+               //{
+               //     Remarks = model.Remarks,
+               //    // StationEntityId = model.StationEntityIds,
+               //    // StationEntity = _iStationEntityRepos.FindById(model.StationEntityIds),
+               //    //TeamEntityId = _iStationEntityRepos.FindById(model.StationEntityIds).TeamEntityId,
+               //    WtContent=model.WtContent,
+               //    WtStartDateTime = model.WtStartDateTime,
+               //    WtOverDateTime = model.WtOverDateTime,
+               //    WtValue = model.WtValue
 
-            };
-              
+               //  };
+                var wt = EntityMapper.GetEntity<WorkTimeEntity, WorkTimeViewModel>(model);
+                wt.StationEntities = _iStationEntityRepos.FindById(model.StationEntityIds);
                 _workTimeRepos.add(wt);
                 //db.WorkTimeEntities.Add(workTimeEntity);
                  int i=_workTimeRepos.SaveChanges();
@@ -126,7 +137,9 @@ namespace Site.Controllers
             {
                 return HttpNotFound();
             }
-            return View(workTimeEntity);
+            WorkTimeViewModel model = EntityMapper.GetEntity<WorkTimeViewModel, WorkTimeEntity>(workTimeEntity);
+            model.SelectStationid = GetSelectListItems();
+            return View(model);
         }
 
         // POST: WorkTimeEntities/Edit/5
@@ -134,15 +147,18 @@ namespace Site.Controllers
         // 详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkId=317598。
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "WorkTimeId,WtDateTime,WtValue,WtContent,Remarks,CreateTime")] WorkTimeEntity workTimeEntity)
+        public ActionResult Edit( WorkTimeViewModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(workTimeEntity).State = EntityState.Modified;
-                db.SaveChanges();
+                var result = _workTimeRepos.FindById(model.WorkTimeId);
+                Mapper.Map(model, result);
+                result.StationEntities = _iStationEntityRepos.FindById(model.StationEntityIds);
+                //_workTimeRepos.SetModified(result);
+                _workTimeRepos.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(workTimeEntity);
+            return View(model);
         }
 
         // GET: WorkTimeEntities/Delete/5
