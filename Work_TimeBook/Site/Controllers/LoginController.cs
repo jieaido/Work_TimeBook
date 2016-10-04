@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using Entity;
+using Entity.InterFace;
 using Entity.Model;
 using Helper;
 using Microsoft.AspNet.Identity;
@@ -18,10 +19,14 @@ namespace Work_TimeBook.Controllers
     public class LoginController : Controller
     {
         private IUserinfoRepos _userinfoRepos;
+        private IStationEntityRepos _iStationEntityRepos;
+        private ITeamEntityRepos _iTeamEntityRepos;
 
-        public LoginController(IUserinfoRepos userinfoRepos)
+        public LoginController(IUserinfoRepos userinfoRepos, IStationEntityRepos iStationEntityRepos, ITeamEntityRepos iTeamEntityRepos)
         {
             _userinfoRepos = userinfoRepos;
+            _iStationEntityRepos = iStationEntityRepos;
+            _iTeamEntityRepos = iTeamEntityRepos;
         }
 
         // GET: Login
@@ -52,7 +57,7 @@ namespace Work_TimeBook.Controllers
                      FormsAuthentication.FormsCookiePath);
                     var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(tick));
                     cookie.HttpOnly = true;
-                    //这个是设置cookie的过期时间
+                    //todo 这个是设置cookie的过期时间
                     cookie.Expires = DateTime.Now.AddDays(3);
                     HttpContext.Response.Cookies.Add(cookie);
                 }
@@ -84,6 +89,8 @@ namespace Work_TimeBook.Controllers
         
         public ActionResult Register()
         {
+            SelectList sl = new SelectList(_iStationEntityRepos.GetAllTeams(), "TeamEntityId", "TeamName");
+            ViewBag.sl = sl;
             return View();
         }
         [HttpPost]
@@ -95,6 +102,9 @@ namespace Work_TimeBook.Controllers
                 {
                     LoginName = model.UserName,
                     LoginPwd = model.Password,
+                    Team = _iTeamEntityRepos.FindById(model.TeamId),
+                    RealName = model.RealName
+                   
                     
                 };
                 _userinfoRepos.AddorUpdate(userInfoEntity);

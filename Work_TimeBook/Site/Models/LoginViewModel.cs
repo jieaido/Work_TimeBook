@@ -31,9 +31,18 @@ namespace Work_TimeBook.Models
         public string UserName { get; set; }
        [Required]
        [Display(Name = "密码")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
         [Required]
+        [System.ComponentModel.DataAnnotations.Compare("Password")]
         [Display(Name = "确认密码")]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
+        [Required]
+        [Display(Name = "真实姓名")]
+        public string RealName { get; set; }
+        [Display(Name = "班组")]
+        public int TeamId { get; set; }
+        
     }
 }
