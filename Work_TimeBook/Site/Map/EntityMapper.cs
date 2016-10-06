@@ -12,6 +12,10 @@ namespace Site.Map
             cfg.CreateMap<StationViewModel, StationEntity>();
             cfg.CreateMap<WorkTimeEntity, WorkTimeViewModel>();
             cfg.CreateMap<WorkTimeViewModel, WorkTimeEntity>();
+            cfg.CreateMap<UserInfoEntity, UserInfoEditViewModel>();
+            cfg.CreateMap<UserInfoEditViewModel, UserInfoEntity>();
+            cfg.CreateMap<UserinfoChangePwdViewModel, UserInfoEntity>();
+            cfg.CreateMap<UserInfoEntity, UserinfoChangePwdViewModel>();
 
             //var config = new MapperConfiguration(cfg => cfg.CreateMap<StationEntity, StationViewModel>());
         }
