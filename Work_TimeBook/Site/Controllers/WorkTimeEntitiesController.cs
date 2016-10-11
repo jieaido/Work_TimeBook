@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using AutoMapper;
 using Entity;
 using Entity.InterFace;
@@ -59,6 +60,8 @@ namespace Site.Controllers
                 SelectStationid = result
             };
             return View(vm);
+            
+            
             //foreach (var stationEntity in teamEntity.StationEntity)
             //{
             //    var ss = new SelectListItem()

@@ -55,5 +55,6 @@ namespace Site.Models
 
         public string Remarks { get; set; }
         public DateTime CreateTime { get; set; }
+        public IEnumerable<string> fucks { get; set; }
     }
 }
