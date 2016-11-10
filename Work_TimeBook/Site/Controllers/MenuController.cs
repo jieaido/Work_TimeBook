@@ -26,10 +26,19 @@ namespace Site.Controllers
             {
                
            };
-            var ss = iMenuEntityRepos.ToOrderList(m=>m.ActionName);
+            var ss = iMenuEntityRepos.ToOrderList(m=>m.ActionName).ToList();
+            //todo 如果我去掉这个tolist，就会报错误。错误说我执行一个commond时未把一个reader关闭。说明我进行foreach循环的时候依然是从数据库中读取的
             
           
             return PartialView("_BarMenu",ss)   ;
+        }
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                iMenuEntityRepos.Dispose();
+            }
+            base.Dispose(disposing);
         }
     }
 }
