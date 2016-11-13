@@ -113,6 +113,7 @@ namespace Site.Controllers
             if (ModelState.IsValid)
             {
                 var result = _iStationEntityRepos.FindById(model.StationId);
+               
                 Mapper.Map(model, result);
                 result.TeamEntities = _iTeamEntityRepos.FindById(model.TeamEntityId);
                 _iStationEntityRepos.SetModified(result);

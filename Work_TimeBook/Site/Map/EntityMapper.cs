@@ -29,10 +29,16 @@ namespace Site.Map
         {
             return Mapper.Map<StationViewModel>(model);
         }
-
-        public static T GetEntity<T,TKey>(TKey tkey)
+        /// <summary>
+        /// 从源中获得一个映射实体
+        /// </summary>
+        /// <typeparam name="T">要生成的实体类型</typeparam>
+        /// <typeparam name="TKey">源的类型</typeparam>
+        /// <param name="source">源</param>
+        /// <returns></returns>
+        public static T GetEntity<T,TKey>(TKey source)
         {
-            return Mapper.Map<T>(tkey);
+            return Mapper.Map<T>(source);
         }
     }
 }

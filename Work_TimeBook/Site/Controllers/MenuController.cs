@@ -11,11 +11,11 @@ namespace Site.Controllers
 {
     public class MenuController : Controller
     {
-        private IMenuEntityRepos iMenuEntityRepos;
+        private IMenuEntityRepos _iMenuEntityRepos;
 
         public MenuController(IMenuEntityRepos iMenuEntityRepos)
         {
-            this.iMenuEntityRepos = iMenuEntityRepos;
+            this._iMenuEntityRepos = iMenuEntityRepos;
         }
 
         // GET: Menu
@@ -26,7 +26,7 @@ namespace Site.Controllers
             {
                
            };
-            var ss = iMenuEntityRepos.ToOrderList(m=>m.ActionName).ToList();
+            var ss = _iMenuEntityRepos.ToOrderList(m=>m.ActionName).ToList();
             //todo 如果我去掉这个tolist，就会报错误。错误说我执行一个commond时未把一个reader关闭。说明我进行foreach循环的时候依然是从数据库中读取的
             
           
@@ -36,7 +36,7 @@ namespace Site.Controllers
         {
             if (disposing)
             {
-                iMenuEntityRepos.Dispose();
+                _iMenuEntityRepos.Dispose();
             }
             base.Dispose(disposing);
         }
